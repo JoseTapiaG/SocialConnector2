@@ -12,14 +12,14 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/albumButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_row="1"
             app:layout_column="1"
             app:layout_rowWeight="1"
             app:layout_gravity="left|fill"
-            android:text="Button 4" />
+            android:text="@string/menu_album"/>
 
         <Button
             android:id="@+id/button5"
