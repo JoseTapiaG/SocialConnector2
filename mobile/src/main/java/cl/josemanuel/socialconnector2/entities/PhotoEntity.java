@@ -1,14 +1,21 @@
 package cl.josemanuel.socialconnector2.entities;
 
+import java.util.Date;
+
 public class PhotoEntity {
 
     private long id;
     private String url;
     private String path;
+    private boolean seen;
+    private Date date;
+    private ContactEntity contact;
+    private MessageEntity message;
 
-    public PhotoEntity(String url, String path) {
+    public PhotoEntity(String url, String path, Date date) {
         this.url = url;
         this.path = path;
+        this.date = date;
     }
 
     public long getId() {
@@ -33,5 +40,37 @@ public class PhotoEntity {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
+    }
+
+    public ContactEntity getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactEntity contact) {
+        this.contact = contact;
+    }
+
+    public MessageEntity getMessage() {
+        return message;
+    }
+
+    public void setMessage(MessageEntity message) {
+        this.message = message;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

@@ -39,17 +39,26 @@ public class AlbumFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_album, container, false);
         setListeners(view);
-        updateView(view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        changeMessage(0);
     }
 
     public void updateView(View view) {
         if (index == 0) {
-            view.findViewById(R.id.nextButton).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.prevButton).setVisibility(View.INVISIBLE);
+        } else {
+            view.findViewById(R.id.prevButton).setVisibility(View.VISIBLE);
         }
 
-        if (index == messages.size()) {
+        if (index == messages.size() - 1) {
             view.findViewById(R.id.nextButton).setVisibility(View.INVISIBLE);
+        } else {
+            view.findViewById(R.id.nextButton).setVisibility(View.VISIBLE);
         }
     }
 
@@ -63,6 +72,7 @@ public class AlbumFragment extends Fragment {
 
         //search and set image of message
         ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getPhoto(currentMessage.getPhoto()));
+        updateView(getView());
     }
 
     private void setListeners(View view) {

@@ -4,12 +4,17 @@
     <!--Album-->
     <string name="left_arrow">Anterior</string>
     <string name="right_arrow">Siguiente</string>
+    <string name="right_arrow_symbol">&gt;</string>
+    <string name="left_arrow_symbol">&lt;</string>
 
     <!--Menu-->
     <string name="menu_album">Álbum Familiar</string>
 
     <!--Test-->
-    <string name="user_name_test">José Manuel</string>
-    <string name="contenido_photo_test1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus nibh nec cursus varius. Suspendisse finibus, tortor vel tempus vulputate, elit massa tincidunt magna, at maximus leo metus sed massa. Nam sed efficitur dui. Maecenas vel odio non nisi gravida luctus. Fusce ac ex venenatis, sollicitudin ante sed, vehicula sapien.</string>
+    <string name="contact_name_test1">José Manuel</string>
+    <string name="contenido_photo_test1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus nibh nec cursus varius. Suspendisse finibus, tortor vel tempus vulputate, elit massa tincidunt magna, at maximus leo metus sed massa. Nam sed efficitur dui. Maecenas vel odio non nisi gravida luctus. Fusce ac ex venenatis, sollicitudin ante sed, vehicula sapien...</string>
+
+    <string name="contact_name_test2">Victor Leonardo</string>
+    <string name="contenido_photo_test2">Duis congue leo feugiat, maximus enim eu, gravida dolor. Nunc fringilla neque ut pulvinar ultricies. Sed at eros turpis. Ut eget metus non ante tincidunt aliquet nec vitae nisi. Donec blandit leo sit amet enim molestie, quis egestas mauris vestibulum. Etiam malesuada, nisl id laoreet lacinia, augue orci iaculis neque, in condimentum...</string>
 
 </resources>

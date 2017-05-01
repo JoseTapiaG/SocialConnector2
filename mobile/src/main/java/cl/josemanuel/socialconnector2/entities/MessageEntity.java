@@ -6,14 +6,14 @@ public class MessageEntity {
 
     private long id;
     private String text;
-    private Date fecha;
+    private Date date;
     private boolean seen;
     private ContactEntity contact;
     private PhotoEntity photo;
 
-    public MessageEntity(String text, Date fecha, boolean seen) {
+    public MessageEntity(String text, Date date, boolean seen) {
         this.text = text;
-        this.fecha = fecha;
+        this.date = date;
         this.seen = seen;
     }
 
@@ -33,12 +33,12 @@ public class MessageEntity {
         this.text = text;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getDate() {
+        return date;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public boolean isSeen() {

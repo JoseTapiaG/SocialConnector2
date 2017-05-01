@@ -5,12 +5,12 @@ import android.os.Environment;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.MessageEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
@@ -26,12 +26,31 @@ public class MessagesDummy {
         ArrayList<MessageEntity> messages = new ArrayList<>();
 
         MessageEntity message1 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
-        message1.setPhoto(new PhotoEntity("", createImage("familia.jpg")));
+        message1.setPhoto(new PhotoEntity("", createImage("familia.jpg"), new Date()));
+        message1.setContact(
+                new ContactEntity(
+                        activity.getResources().getString(R.string.contact_name_test1),
+                        "asd",
+                        "asd"));
         messages.add(message1);
 
-        MessageEntity message2 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
-        message2.setPhoto(new PhotoEntity("", createImage("dog.jpg")));
+        MessageEntity message2 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test2), new Date(), false);
+        message2.setPhoto(new PhotoEntity("", createImage("dog.jpg"), new Date()));
+        message2.setContact(
+                new ContactEntity(
+                        activity.getResources().getString(R.string.contact_name_test2),
+                        "asd",
+                        "asd"));
         messages.add(message2);
+
+        MessageEntity message3 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
+        message3.setPhoto(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
+        message3.setContact(
+                new ContactEntity(
+                        activity.getResources().getString(R.string.contact_name_test1),
+                        "asd",
+                        "asd"));
+        messages.add(message3);
 
         return messages;
     }

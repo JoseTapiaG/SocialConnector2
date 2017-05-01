@@ -14,7 +14,9 @@
             style="@style/buttonArrow"
             android:id="@+id/prevButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:text="@string/left_arrow_symbol"
+            android:textSize="60sp"/>
 
     </LinearLayout>
 
@@ -27,8 +29,7 @@
         <ImageView
             android:id="@+id/photo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/familia"/>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
@@ -45,16 +46,14 @@
             android:layout_height="wrap_content"
             android:textSize="30dp"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="20dp"
-            android:text="@string/user_name_test"/>
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/message_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="20dp"
-            android:textColor="@android:color/white"
-            android:text="@string/contenido_photo_test1"/>
+            android:textColor="@android:color/white"/>
 
     </LinearLayout>
 
@@ -67,7 +66,9 @@
             style="@style/buttonArrow"
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textSize="60sp"
+            android:text="@string/right_arrow_symbol"/>
     </LinearLayout>
 
 </LinearLayout>
