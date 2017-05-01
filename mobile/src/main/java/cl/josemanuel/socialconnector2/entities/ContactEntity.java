@@ -3,14 +3,14 @@ package cl.josemanuel.socialconnector2.entities;
 public class ContactEntity {
 
     private long id;
-    private String nombre;
-    private String correo;
+    private String name;
+    private String email;
     private String skype;
     private PhotoEntity avatar;
 
     public ContactEntity(String nombre, String correo, String skype) {
-        this.nombre = nombre;
-        this.correo = correo;
+        this.name = nombre;
+        this.email = correo;
         this.skype = skype;
     }
 
@@ -22,20 +22,20 @@ public class ContactEntity {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSkype() {

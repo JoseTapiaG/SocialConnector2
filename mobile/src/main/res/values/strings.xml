@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">SocialConnector2</string>
 
+    <!--Album-->
+    <string name="left_arrow">Anterior</string>
+    <string name="right_arrow">Siguiente</string>
+
     <!--Menu-->
     <string name="menu_album">Álbum Familiar</string>
 
     <!--Test-->
     <string name="user_name_test">José Manuel</string>
-    <string name="contenido_photo_test">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus nibh nec cursus varius. Suspendisse finibus, tortor vel tempus vulputate, elit massa tincidunt magna, at maximus leo metus sed massa. Nam sed efficitur dui. Maecenas vel odio non nisi gravida luctus. Fusce ac ex venenatis, sollicitudin ante sed, vehicula sapien.</string>
+    <string name="contenido_photo_test1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus nibh nec cursus varius. Suspendisse finibus, tortor vel tempus vulputate, elit massa tincidunt magna, at maximus leo metus sed massa. Nam sed efficitur dui. Maecenas vel odio non nisi gravida luctus. Fusce ac ex venenatis, sollicitudin ante sed, vehicula sapien.</string>
 
 </resources>

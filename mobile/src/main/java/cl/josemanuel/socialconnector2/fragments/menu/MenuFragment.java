@@ -20,7 +20,7 @@ public class MenuFragment extends Fragment {
     }
 
     private void setMenuListeners(View view) {
-        view.findViewById(R.id.albumButton).setOnClickListener(new AlbumClickListener(this));
+        view.findViewById(R.id.albumButton).setOnClickListener(new AlbumMenuClickListener(this));
         view.findViewById(R.id.button5).setOnClickListener(new GenericMenuClickListener(this));
         view.findViewById(R.id.button6).setOnClickListener(new GenericMenuClickListener(this));
         view.findViewById(R.id.button7).setOnClickListener(new GenericMenuClickListener(this));

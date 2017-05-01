@@ -8,6 +8,8 @@ public class MessageEntity {
     private String text;
     private Date fecha;
     private boolean seen;
+    private ContactEntity contact;
+    private PhotoEntity photo;
 
     public MessageEntity(String text, Date fecha, boolean seen) {
         this.text = text;
@@ -45,5 +47,21 @@ public class MessageEntity {
 
     public void setSeen(boolean seen) {
         this.seen = seen;
+    }
+
+    public ContactEntity getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactEntity contact) {
+        this.contact = contact;
+    }
+
+    public PhotoEntity getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(PhotoEntity photo) {
+        this.photo = photo;
     }
 }
