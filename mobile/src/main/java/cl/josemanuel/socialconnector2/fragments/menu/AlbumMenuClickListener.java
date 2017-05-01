@@ -1,7 +1,7 @@
 package cl.josemanuel.socialconnector2.fragments.menu;
 
 import android.view.View;
-import cl.josemanuel.socialconnector2.fragments.albumFragment.AlbumFragment;
+import cl.josemanuel.socialconnector2.fragments.AlbumFragment;
 
 public class AlbumMenuClickListener extends GenericMenuClickListener {
 
