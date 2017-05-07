@@ -3,20 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@android:color/black">
+    android:background="@color/background_album_active">
 
     <LinearLayout
         android:tag="@string/left_arrow"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
 
         <Button
-            style="@style/buttonArrow"
             android:id="@+id/prevButton"
+            style="@style/buttonArrow"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/left_arrow_symbol"
-            android:textSize="60sp"/>
+            android:textSize="60sp" />
 
     </LinearLayout>
 
@@ -58,17 +59,18 @@
     </LinearLayout>
 
     <LinearLayout
-        android:tag="@string/right_arrow"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:tag="@string/right_arrow"
+        android:gravity="center_vertical">
 
         <Button
-            style="@style/buttonArrow"
             android:id="@+id/nextButton"
+            style="@style/buttonArrow"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="60sp"
-            android:text="@string/right_arrow_symbol"/>
+            android:layout_height="wrap_content"
+            android:text="@string/right_arrow_symbol"
+            android:textSize="60sp" />
     </LinearLayout>
 
 </LinearLayout>
