@@ -45,15 +45,19 @@
             android:id="@+id/contact_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
+            android:textSize="30sp"
+            android:layout_marginTop="50sp"
             android:textColor="@android:color/white"
             android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/message_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:scrollbars="vertical"
+            android:maxLines = "12"
+            android:isScrollContainer="true"
             android:textColor="@android:color/white"/>
 
     </LinearLayout>

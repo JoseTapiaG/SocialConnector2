@@ -3,6 +3,7 @@ package cl.josemanuel.socialconnector2.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,8 @@ public class AlbumFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        TextView messageTextView = (TextView) view.findViewById(R.id.message_text);
+        messageTextView.setMovementMethod(new ScrollingMovementMethod());
         changeMessage(0);
     }
 
@@ -68,7 +71,11 @@ public class AlbumFragment extends Fragment {
 
         //update contact name and text
         ((TextView) getView().findViewById(R.id.contact_name)).setText(currentMessage.getContact().getName());
-        ((TextView) getView().findViewById(R.id.message_text)).setText(currentMessage.getText());
+
+        TextView messageTextView = (TextView) getView().findViewById(R.id.message_text);
+        messageTextView.setText(currentMessage.getText());
+        messageTextView.scrollTo(0,0);
+
 
         //search and set image of message
         ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getPhoto(currentMessage.getPhoto()));
