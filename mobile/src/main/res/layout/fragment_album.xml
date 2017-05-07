@@ -14,10 +14,7 @@
         <Button
             android:id="@+id/prevButton"
             style="@style/buttonArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/left_arrow_symbol"
-            android:textSize="60sp" />
+            android:text="@string/left_arrow_symbol"/>
 
     </LinearLayout>
 
@@ -71,10 +68,7 @@
         <Button
             android:id="@+id/nextButton"
             style="@style/buttonArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/right_arrow_symbol"
-            android:textSize="60sp" />
+            android:text="@string/right_arrow_symbol"/>
     </LinearLayout>
 
 </LinearLayout>

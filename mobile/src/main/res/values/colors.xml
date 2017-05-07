@@ -5,6 +5,11 @@
     <color name="colorAccent">#FF4081</color>
     <color name="buttonPrincipal">#2ECCFA</color>
 
+    <!-- Next-Prev button-->
+    <color name="buttonNextPrev">#2ECCFA</color>
+    <color name="buttonNextPrevPressed">#712eccfa</color>
+    <color name="buttonNextPrevBorder">#5e2e5efa</color>
+
     <!--Menu album-->
     <color name="background_album">#a93eafb1</color>
     <color name="background_album_active">#3eafb1</color>
