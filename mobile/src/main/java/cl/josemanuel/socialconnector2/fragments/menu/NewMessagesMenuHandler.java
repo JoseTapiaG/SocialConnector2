@@ -4,7 +4,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import cl.josemanuel.socialconnector2.R;
-import cl.josemanuel.socialconnector2.fragments.AlbumFragment;
 import cl.josemanuel.socialconnector2.fragments.NewMessagesFragment;
 
 public class NewMessagesMenuHandler extends MenuHandler {

@@ -1,8 +1,9 @@
 package cl.josemanuel.socialconnector2.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MessageEntity {
+public class MessageEntity implements Serializable {
 
     private long id;
     private String text;

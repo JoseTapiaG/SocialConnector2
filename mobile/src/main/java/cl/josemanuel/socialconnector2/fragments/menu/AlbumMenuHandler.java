@@ -4,7 +4,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import cl.josemanuel.socialconnector2.R;
-import cl.josemanuel.socialconnector2.fragments.AlbumFragment;
+import cl.josemanuel.socialconnector2.fragments.album.AlbumFragment;
 
 public class AlbumMenuHandler extends MenuHandler {
 

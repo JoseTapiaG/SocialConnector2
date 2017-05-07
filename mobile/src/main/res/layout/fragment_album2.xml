@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/background_send_message_active">
+
+    <LinearLayout
+        android:tag="@string/left_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/prevButton"
+            style="@style/buttonArrow"
+            android:text="@string/left_arrow_symbol"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_show_photo_text"
+            android:layout_width="447dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/show_text"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:tag="@string/right_arrow"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/nextButton"
+            style="@style/buttonArrow"
+            android:text="@string/right_arrow_symbol"/>
+    </LinearLayout>
+
+</LinearLayout>

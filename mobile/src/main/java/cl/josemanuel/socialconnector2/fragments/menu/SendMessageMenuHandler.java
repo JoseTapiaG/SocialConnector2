@@ -4,8 +4,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import cl.josemanuel.socialconnector2.R;
-import cl.josemanuel.socialconnector2.fragments.AlbumFragment;
-import cl.josemanuel.socialconnector2.fragments.SendMessageFragment;
+import cl.josemanuel.socialconnector2.fragments.album.AlbumFragment2;
 
 public class SendMessageMenuHandler extends MenuHandler {
 
@@ -16,7 +15,7 @@ public class SendMessageMenuHandler extends MenuHandler {
 
     public void onClick(View v) {
         super.onClick(v);
-        changeActivity(new SendMessageFragment());
+        changeActivity(new AlbumFragment2());
     }
 
     @Override

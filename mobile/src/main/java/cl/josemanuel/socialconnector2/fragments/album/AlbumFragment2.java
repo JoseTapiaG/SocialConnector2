@@ -1,14 +1,13 @@
-package cl.josemanuel.socialconnector2.fragments;
+package cl.josemanuel.socialconnector2.fragments.album;
 
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,7 +18,7 @@ import cl.josemanuel.socialconnector2.entities.MessageEntity;
 
 import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
 
-public class AlbumFragment extends Fragment {
+public class AlbumFragment2 extends Fragment {
 
     private ArrayList<MessageEntity> messages;
     private MessageEntity currentMessage;
@@ -38,7 +37,7 @@ public class AlbumFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_album, container, false);
+        View view = inflater.inflate(R.layout.fragment_album2, container, false);
         setListeners(view);
         return view;
     }
@@ -46,8 +45,8 @@ public class AlbumFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView messageTextView = (TextView) view.findViewById(R.id.message_text);
-        messageTextView.setMovementMethod(new ScrollingMovementMethod());
+        /*TextView messageTextView = (TextView) view.findViewById(R.id.message_text);
+        messageTextView.setMovementMethod(new ScrollingMovementMethod());*/
         changeMessage(0);
     }
 
@@ -70,11 +69,11 @@ public class AlbumFragment extends Fragment {
         currentMessage = messages.get(index);
 
         //update contact name and text
-        ((TextView) getView().findViewById(R.id.contact_name)).setText(currentMessage.getContact().getName());
+        //((TextView) getView().findViewById(R.id.contact_name)).setText(currentMessage.getContact().getName());
 
-        TextView messageTextView = (TextView) getView().findViewById(R.id.message_text);
+        /*TextView messageTextView = (TextView) getView().findViewById(R.id.message_text);
         messageTextView.setText(currentMessage.getText());
-        messageTextView.scrollTo(0,0);
+        messageTextView.scrollTo(0,0);*/
 
 
         //search and set image of message
@@ -96,6 +95,22 @@ public class AlbumFragment extends Fragment {
                 changeMessage(--index);
             }
         });
+
+        view.findViewById(R.id.button_show_photo_text).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPhotoContentDialog();
+            }
+        });
+    }
+
+    private void showPhotoContentDialog() {
+        DialogFragment photoContentDialog = new PhotoContentDialog();
+
+        Bundle args = new Bundle();
+        args.putSerializable("message", currentMessage);
+        photoContentDialog.setArguments(args);
+        photoContentDialog.show(getFragmentManager(), "missiles");
     }
 
     private void setTestEnv() {
