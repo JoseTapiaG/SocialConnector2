@@ -20,6 +20,12 @@ public abstract class MenuHandler implements View.OnClickListener{
         this.menuFragment = menuFragment;
     }
 
+    /**
+     * @param v item de menú
+     *
+     * Cambia el background del item de menú
+     *
+     */
     @Override
     public void onClick(View v) {
         if(menuFragment.currentMenuHandler == this)
@@ -42,5 +48,8 @@ public abstract class MenuHandler implements View.OnClickListener{
         transaction.commit();
     }
 
+    /**
+     * Quita el background 'active' del elemento sobre el que se hizo click anterior
+     */
     protected abstract void removeActiveDrawable();
 }

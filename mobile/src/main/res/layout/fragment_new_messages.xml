@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/holo_blue_dark"
+    android:background="@color/background_new_messages_active"
     android:gravity="center">
 
     <TextView
@@ -13,6 +13,6 @@
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Social Connector 2"/>
+        android:text="Nuevos mensajes"/>
 
 </LinearLayout>
