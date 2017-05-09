@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -45,8 +46,6 @@ public class AlbumFragment2 extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /*TextView messageTextView = (TextView) view.findViewById(R.id.message_text);
-        messageTextView.setMovementMethod(new ScrollingMovementMethod());*/
         changeMessage(0);
     }
 
@@ -64,17 +63,12 @@ public class AlbumFragment2 extends Fragment {
         }
     }
 
-    public void changeMessage(int index){
+    public void changeMessage(int index) {
         //update currentMessage
         currentMessage = messages.get(index);
 
         //update contact name and text
-        //((TextView) getView().findViewById(R.id.contact_name)).setText(currentMessage.getContact().getName());
-
-        /*TextView messageTextView = (TextView) getView().findViewById(R.id.message_text);
-        messageTextView.setText(currentMessage.getText());
-        messageTextView.scrollTo(0,0);*/
-
+        ((TextView) getView().findViewById(R.id.contact_name)).setText(currentMessage.getContact().getName());
 
         //search and set image of message
         ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getPhoto(currentMessage.getPhoto()));
