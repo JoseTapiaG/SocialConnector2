@@ -3,16 +3,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_send_message_active"
-    android:gravity="center">
+    android:background="@color/background_send_message_active">
 
-    <TextView
-        android:padding="10sp"
-        android:textColor="#dfffffff"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enviar Mensaje"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/send_message_text"
+            android:padding="10sp"
+            android:textColor="#dfffffff"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="600dp"
+            android:text="@string/help_text"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/voice_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/voice_button"/>
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

@@ -15,12 +15,12 @@
     <color name="background_album_active">#3eafb1</color>
 
     <!--Menu Enviar mensaje-->
-    <color name="background_send_message">#a9b16e3e</color>
-    <color name="background_send_message_active">#b16e3e</color>
+    <color name="background_new_photos">#a9b16e3e</color>
+    <color name="background_new_photos_active">#b16e3e</color>
 
     <!--Menu fotos nuevas-->
-    <color name="background_new_photos">#a93eb172</color>
-    <color name="background_new_photos_active">#3eb172</color>
+    <color name="background_send_message">#a93eb172</color>
+    <color name="background_send_message_active">#3eb172</color>
 
     <!--Menu mensajes nuevos-->
     <color name="background_new_messages">#a9763eb1</color>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/background_send_message_active">
+    android:background="@color/background_new_photos_active">
 
     <LinearLayout
         android:tag="@string/left_arrow"

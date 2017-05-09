@@ -5,6 +5,7 @@ import android.view.View;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.fragments.NewPhotosFragment;
+import cl.josemanuel.socialconnector2.fragments.album.AlbumFragment2;
 
 public class NewPhotosMenuHandler extends MenuHandler {
 
@@ -15,7 +16,7 @@ public class NewPhotosMenuHandler extends MenuHandler {
 
     public void onClick(View v) {
         super.onClick(v);
-        changeActivity(new NewPhotosFragment());
+        changeActivity(new AlbumFragment2());
     }
 
     @Override

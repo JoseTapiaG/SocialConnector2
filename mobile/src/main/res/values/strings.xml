@@ -11,6 +11,9 @@
     <!--Photo Text Dialog-->
     <string name="close_dialog">Cerrar</string>
 
+    <!--Send Message-->
+    <string name="help_text">Acá se verá su mensaje...</string>
+
     <!--Menu-->
     <string name="menu_album">Álbum Familiar</string>
 
