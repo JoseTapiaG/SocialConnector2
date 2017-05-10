@@ -14,6 +14,9 @@
     <!--Send Message-->
     <string name="help_text">Acá se verá su mensaje...</string>
 
+    <!--Contacts-->
+    <string name="contact_title">Contactos</string>
+
     <!--Menu-->
     <string name="menu_album">Álbum Familiar</string>
 

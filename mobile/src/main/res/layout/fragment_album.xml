@@ -13,7 +13,7 @@
 
         <Button
             android:id="@+id/prevButton"
-            style="@style/buttonArrow"
+            style="@style/buttonAlbum"
             android:text="@string/left_arrow_symbol"/>
 
     </LinearLayout>
@@ -67,7 +67,7 @@
 
         <Button
             android:id="@+id/nextButton"
-            style="@style/buttonArrow"
+            style="@style/buttonAlbum"
             android:text="@string/right_arrow_symbol"/>
     </LinearLayout>
 

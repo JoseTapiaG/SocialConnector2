@@ -21,4 +21,12 @@
         <item name="android:paddingBottom">8dp</item>
         <item name="android:shadowRadius">1</item>
     </style>
+
+    <style name="buttonAlbum" parent="buttonArrow">
+        <item name="android:textColor">@color/background_album_active</item>
+    </style>
+
+    <style name="buttonAlbum2" parent="buttonArrow">
+        <item name="android:textColor">@color/background_new_photos_active</item>
+    </style>
 </resources>

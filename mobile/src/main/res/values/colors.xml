@@ -6,25 +6,29 @@
     <color name="buttonPrincipal">#2ECCFA</color>
 
     <!-- Next-Prev button-->
-    <color name="buttonNextPrev">#2ECCFA</color>
-    <color name="buttonNextPrevPressed">#712eccfa</color>
-    <color name="buttonNextPrevBorder">#5e2e5efa</color>
+    <color name="buttonNextPrev">#FFFFFF</color>
+    <color name="buttonNextPrevPressed">#CCCCCC</color>
+
 
     <!--Menu album-->
-    <color name="background_album">#a93eafb1</color>
-    <color name="background_album_active">#3eafb1</color>
+    <color name="background_album">#324D5C</color>
+    <color name="background_album_active">#324D5C</color>
 
     <!--Menu Enviar mensaje-->
-    <color name="background_new_photos">#a9b16e3e</color>
-    <color name="background_new_photos_active">#b16e3e</color>
+    <color name="background_new_photos">#46B29D</color>
+    <color name="background_new_photos_active">#46B29D</color>
 
     <!--Menu fotos nuevas-->
-    <color name="background_send_message">#a93eb172</color>
-    <color name="background_send_message_active">#3eb172</color>
+    <color name="background_send_message">#F0CA4D</color>
+    <color name="background_send_message_active">#F0CA4D</color>
 
     <!--Menu mensajes nuevos-->
-    <color name="background_new_messages">#a9763eb1</color>
-    <color name="background_new_messages_active">#763eb1</color>
+    <color name="background_new_messages">#E37B40</color>
+    <color name="background_new_messages_active">#E37B40</color>
+
+    <!--Menu mensajes nuevos-->
+    <color name="background_phone_call">#DE5B49</color>
+    <color name="background_phone_call_active">#DE5B49</color>
 
 
 </resources>

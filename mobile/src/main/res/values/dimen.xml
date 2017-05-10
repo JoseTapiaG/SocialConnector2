@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Menu-->
+    <dimen name="menu_height">140dp</dimen>
+
+
+    <!--Contacts-->
+    <dimen name="contact_letter">30sp</dimen>
+    <dimen name="contact_padding">30dp</dimen>
+    <dimen name="contact_title">50dp</dimen>
+</resources>
