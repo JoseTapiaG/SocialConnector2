@@ -17,74 +17,8 @@
         />
 
 
-    <LinearLayout
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:layout_marginBottom="20dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/contact_name_test1"
-                android:textColor="#FFFFFF"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/contact_padding"
-                android:paddingRight="@dimen/contact_padding"
-                android:textSize="@dimen/contact_letter"
-                android:layout_weight="1"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/familia"
-
-                android:layout_weight="2"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:minHeight="1dp"
-            android:background="#FFFFFF"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/contact_name_test2"
-            android:textColor="#FFFFFF"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/contact_padding"
-            android:paddingRight="@dimen/contact_padding"
-            android:textSize="@dimen/contact_letter"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/ic_fotos_nuevas"
-            android:layout_weight="2"/>
-
-    </LinearLayout>
-
-
-
+        android:layout_height="match_parent"
+        android:id="@+id/contacts_scrollview"/>
 </LinearLayout>

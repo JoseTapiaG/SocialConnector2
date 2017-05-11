@@ -1,5 +1,7 @@
 package cl.josemanuel.socialconnector2.entities;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 public class PhotoEntity {
@@ -11,6 +13,7 @@ public class PhotoEntity {
     private Date date;
     private ContactEntity contact;
     private MessageEntity message;
+    private Bitmap bitmap;
 
     public PhotoEntity(String url, String path, Date date) {
         this.url = url;
@@ -72,5 +75,13 @@ public class PhotoEntity {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }

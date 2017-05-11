@@ -25,8 +25,10 @@ public class PhotoService {
 
     public Bitmap getPhoto(PhotoEntity photo){
         File imgFile = new File(photo.getPath());
-        if(imgFile.exists())
-            return BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+        if(imgFile.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            return bitmap;
+        }
         else {
             searchPhoto(photo.getUrl());
             //TODO search image if image in path doesnt exist
