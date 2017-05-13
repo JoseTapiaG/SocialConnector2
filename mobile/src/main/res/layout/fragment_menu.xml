@@ -11,15 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/menu_album"
         android:gravity="center"
-        android:padding="20dp"
-        android:background="@drawable/menu_album">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:src="@drawable/ic_album" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textStyle="bold"
+            android:textSize="@dimen/menu_text_size"
+            android:gravity="center_horizontal"
+            android:text="@string/menu_album"
+            android:textColor="@color/menu_text_color" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -27,18 +41,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/menu_new_photos"
         android:gravity="center"
-        android:padding="20dp"
-        android:background="@drawable/menu_new_photos">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:paddingTop="15dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_fotos_nuevas" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textStyle="bold"
+            android:textSize="@dimen/menu_text_size"
+            android:gravity="center_horizontal"
+            android:text="@string/menu_new_messages"
+            android:textColor="@color/menu_text_color" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,17 +70,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/menu_send_message"
         android:gravity="center"
-        android:background="@drawable/menu_send_message">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_enviar_mensaje" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textStyle="bold"
+            android:textSize="@dimen/menu_text_size"
+            android:gravity="center_horizontal"
+            android:text="@string/menu_send_message"
+            android:textColor="@color/menu_text_color" />
 
     </LinearLayout>
 
@@ -65,17 +99,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="@drawable/menu_new_messages"
         android:gravity="center"
-        android:padding="20dp"
-        android:background="@drawable/menu_new_messages">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:padding="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_mensajes_nuevos" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textStyle="bold"
+            android:textSize="@dimen/menu_text_size"
+            android:gravity="center_horizontal"
+            android:text="@string/menu_new_messages"
+            android:textColor="@color/menu_text_color" />
     </LinearLayout>
 </LinearLayout>

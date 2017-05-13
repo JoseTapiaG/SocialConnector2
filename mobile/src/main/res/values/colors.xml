@@ -9,6 +9,8 @@
     <color name="buttonNextPrev">#FFFFFF</color>
     <color name="buttonNextPrevPressed">#CCCCCC</color>
 
+    <!--Menu texto-->
+    <color name="menu_text_color">#FFFFFF</color>
 
     <!--Menu album-->
     <color name="background_album">#324D5C</color>
@@ -30,5 +32,8 @@
     <color name="background_phone_call">#DE5B49</color>
     <color name="background_phone_call_active">#DE5B49</color>
 
+
+    <!--Otros-->
+    <color name="background_no_content">#3d9c8a</color>
 
 </resources>
