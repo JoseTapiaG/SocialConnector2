@@ -16,10 +16,12 @@ import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
 public class MessagesDummy {
 
+    private ContactEntity contact;
     private Activity activity;
 
-    public MessagesDummy(Activity activity) {
+    public MessagesDummy(Activity activity, ContactEntity contact) {
         this.activity = activity;
+        this.contact = contact;
     }
 
     public ArrayList<MessageEntity> get3Messages() {
@@ -32,7 +34,6 @@ public class MessagesDummy {
                         activity.getResources().getString(R.string.contact_name_test1),
                         "asd",
                         "asd"));
-        messages.add(message1);
 
         MessageEntity message2 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test2), new Date(), false);
         message2.setPhoto(new PhotoEntity("", createImage("dog.jpg"), new Date()));
@@ -41,7 +42,6 @@ public class MessagesDummy {
                         activity.getResources().getString(R.string.contact_name_test2),
                         "asd",
                         "asd"));
-        messages.add(message2);
 
         MessageEntity message3 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
         message3.setPhoto(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
@@ -50,7 +50,12 @@ public class MessagesDummy {
                         activity.getResources().getString(R.string.contact_name_test1),
                         "asd",
                         "asd"));
-        messages.add(message3);
+
+        if (contact.getId() == 1) {
+            messages.add(message1);
+            messages.add(message3);
+        } else
+            messages.add(message2);
 
         return messages;
     }

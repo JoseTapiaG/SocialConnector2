@@ -5,7 +5,7 @@ import android.view.View;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.fragments.NewMessagesFragment;
-import cl.josemanuel.socialconnector2.fragments.contacts.ContactsFragment;
+import cl.josemanuel.socialconnector2.fragments.contacts.AlbumContactsFragment;
 
 public class NewMessagesMenuHandler extends MenuHandler {
 
@@ -16,7 +16,7 @@ public class NewMessagesMenuHandler extends MenuHandler {
 
     public void onClick(View v) {
         super.onClick(v);
-        changeActivity(new ContactsFragment());
+        changeActivity(new NewMessagesFragment());
     }
 
     @Override

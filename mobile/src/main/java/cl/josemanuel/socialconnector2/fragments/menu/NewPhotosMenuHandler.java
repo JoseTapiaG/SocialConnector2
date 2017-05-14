@@ -16,7 +16,7 @@ public class NewPhotosMenuHandler extends MenuHandler {
 
     public void onClick(View v) {
         super.onClick(v);
-        changeActivity(new AlbumFragment2());
+        changeActivity(new NewPhotosFragment());
     }
 
     @Override

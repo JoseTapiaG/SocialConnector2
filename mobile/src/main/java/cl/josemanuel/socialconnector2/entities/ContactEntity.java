@@ -1,6 +1,8 @@
 package cl.josemanuel.socialconnector2.entities;
 
-public class ContactEntity {
+import java.io.Serializable;
+
+public class ContactEntity implements Serializable {
 
     private long id;
     private String name;

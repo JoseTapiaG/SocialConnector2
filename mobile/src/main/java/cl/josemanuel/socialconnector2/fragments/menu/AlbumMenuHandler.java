@@ -5,6 +5,7 @@ import android.view.View;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.fragments.album.AlbumFragment;
+import cl.josemanuel.socialconnector2.fragments.contacts.AlbumContactsFragment;
 
 public class AlbumMenuHandler extends MenuHandler {
 
@@ -15,7 +16,7 @@ public class AlbumMenuHandler extends MenuHandler {
 
     public void onClick(View v) {
         super.onClick(v);
-        changeActivity(new AlbumFragment());
+        changeActivity(new AlbumContactsFragment());
     }
 
     @Override

@@ -27,10 +27,12 @@ public class ContactsDummy {
 
         ContactEntity contact1 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test1), "test@gmail.com", "");
         contact1.setAvatar(new PhotoEntity("", createImage("dog.jpg"), new Date()));
+        contact1.setId(1);
         contacts.add(contact1);
 
         ContactEntity contact2 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test2), "test@gmail.com", "");
         contact2.setAvatar(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
+        contact2.setId(2);
         contacts.add(contact2);
 
         contacts.add(contact1);
