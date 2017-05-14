@@ -6,8 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/buttonPrincipal</item>
-        <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
+    </style>
+
+    <style name="WindowTitleBackground" parent="AppTheme">
+        <item name="android:background">@color/titleBackground</item>
+        <item name="android:colorBackground">@color/titleBackground</item>
     </style>
 
     <style name="buttonArrow" parent="@style/Widget.AppCompat.Button.Colored">

@@ -1,16 +1,18 @@
 package cl.josemanuel.socialconnector2.activities;
 
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.fragments.ContentFragment;
 import cl.josemanuel.socialconnector2.services.PhotoService;
+import github.ankyl.castscreen.CastScreenActivity;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends CastScreenActivity {
 
     // Photo Service
     public static PhotoService photoService;
@@ -35,5 +37,14 @@ public class MainActivity extends Activity {
 
         // Commit the transaction
         transaction.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem castButtonMenuItem = menu.findItem(R.id.media_route_menu_item);
+        super.prepareCastButton(castButtonMenuItem, "70D04A1B");
+        return true;
     }
 }

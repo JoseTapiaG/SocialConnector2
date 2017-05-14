@@ -5,6 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="buttonPrincipal">#2ECCFA</color>
 
+    <!--Title-->
+    <color name="titleBackground">#FFFFFF</color>
+
+
     <!-- Next-Prev button-->
     <color name="buttonNextPrev">#FFFFFF</color>
     <color name="buttonNextPrevPressed">#CCCCCC</color>
