@@ -18,6 +18,7 @@
     <string name="contact_title">Contactos</string>
 
     <!--Menu-->
+    <string name="menu_skype">Skype</string>
     <string name="menu_album">Álbum Familiar</string>
     <string name="menu_send_message">Enviar Mensaje</string>
     <string name="menu_new_messages">Nuevos Mensajes</string>

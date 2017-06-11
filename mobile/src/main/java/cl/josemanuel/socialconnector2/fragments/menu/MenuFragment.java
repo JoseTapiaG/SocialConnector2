@@ -22,6 +22,7 @@ public class MenuFragment extends Fragment {
     }
 
     private void setMenuListeners(View view) {
+        view.findViewById(R.id.skypeButton).setOnClickListener(new SkypeMenuHandler(this));
         view.findViewById(R.id.albumButton).setOnClickListener(new AlbumMenuHandler(this));
         view.findViewById(R.id.sendMessageButton).setOnClickListener(new SendMessageMenuHandler(this));
         view.findViewById(R.id.newPhotosButton).setOnClickListener(new NewPhotosMenuHandler(this));

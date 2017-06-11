@@ -25,7 +25,7 @@ public class ContactsDummy {
     public ArrayList<ContactEntity> getContacts() {
         ArrayList<ContactEntity> contacts = new ArrayList<>();
 
-        ContactEntity contact1 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test1), "test@gmail.com", "");
+        ContactEntity contact1 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test1), "test@gmail.com", "test");
         contact1.setAvatar(new PhotoEntity("", createImage("dog.jpg"), new Date()));
         contact1.setId(1);
         contacts.add(contact1);
