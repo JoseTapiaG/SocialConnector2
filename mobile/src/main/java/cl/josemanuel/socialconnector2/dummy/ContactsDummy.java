@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.database.PhotoDB;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.MessageEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
@@ -23,27 +24,19 @@ public class ContactsDummy {
     }
 
     public ArrayList<ContactEntity> getContacts() {
-        ArrayList<ContactEntity> contacts = new ArrayList<>();
+
+        PhotoDB photoDB = new PhotoDB(activity);
 
         ContactEntity contact1 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test1), "test@gmail.com", "");
         contact1.setAvatar(new PhotoEntity("", createImage("dog.jpg"), new Date()));
-        contact1.setId(1);
-        contacts.add(contact1);
 
-        ContactEntity contact2 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test2), "test@gmail.com", "");
+        photoDB.insertContact(contact1);
+
+        /*ContactEntity contact2 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test2), "test@gmail.com", "");
         contact2.setAvatar(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
-        contact2.setId(2);
-        contacts.add(contact2);
+        contact2.setId(2);*/
 
-        contacts.add(contact1);
-
-        contacts.add(contact2);
-
-        contacts.add(contact1);
-
-        contacts.add(contact2);
-
-        return contacts;
+        return photoDB.getContacts();
     }
 
     public String createImage(String photoName) {
