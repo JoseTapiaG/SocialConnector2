@@ -15,15 +15,17 @@ import java.util.ArrayList;
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.constants.Constants;
 import cl.josemanuel.socialconnector2.dummy.MessagesDummy;
+import cl.josemanuel.socialconnector2.dummy.PhotoDummy;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.MessageEntity;
+import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
 import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
 
 public class AlbumFragment extends Fragment {
 
-    private ArrayList<MessageEntity> messages;
-    private MessageEntity currentMessage;
+    private ArrayList<PhotoEntity> photos;
+    private PhotoEntity currentPhoto;
     private int index = 0;
 
     @Override
@@ -60,7 +62,7 @@ public class AlbumFragment extends Fragment {
             view.findViewById(R.id.prevButton).setVisibility(View.VISIBLE);
         }
 
-        if (index == messages.size() - 1) {
+        if (index == photos.size() - 1) {
             view.findViewById(R.id.nextButton).setVisibility(View.INVISIBLE);
         } else {
             view.findViewById(R.id.nextButton).setVisibility(View.VISIBLE);
@@ -69,18 +71,18 @@ public class AlbumFragment extends Fragment {
 
     public void changeMessage(int index){
         //update currentMessage
-        currentMessage = messages.get(index);
+        currentPhoto = photos.get(index);
 
         //update contact name and text
-        ((TextView) getView().findViewById(R.id.contact_name)).setText(currentMessage.getContact().getName());
+        ((TextView) getView().findViewById(R.id.contact_name)).setText(currentPhoto.getContact().getName());
 
         TextView messageTextView = (TextView) getView().findViewById(R.id.message_text);
-        messageTextView.setText(currentMessage.getText());
+        messageTextView.setText(currentPhoto.getMessage().getText());
         messageTextView.scrollTo(0,0);
 
 
         //search and set image of message
-        ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getPhoto(currentMessage.getPhoto()));
+        ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getPhoto(currentPhoto));
         updateView(getView());
     }
 
@@ -101,7 +103,7 @@ public class AlbumFragment extends Fragment {
     }
 
     private void setTestEnv(ContactEntity contact) {
-        MessagesDummy messagesDummy = new MessagesDummy(getActivity(), contact);
-        messages = messagesDummy.get3Messages();
+        PhotoDummy photoDummy = new PhotoDummy(getActivity());
+        photos = photoDummy.getPhotos(contact.getId());
     }
 }

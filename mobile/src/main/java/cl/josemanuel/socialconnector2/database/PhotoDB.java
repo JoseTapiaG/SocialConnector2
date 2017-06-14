@@ -7,9 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import cl.josemanuel.socialconnector2.database.SocialConnectorContract.Photo;
 import cl.josemanuel.socialconnector2.database.SocialConnectorContract.Contact;
+import cl.josemanuel.socialconnector2.database.SocialConnectorContract.Message;
+import cl.josemanuel.socialconnector2.database.SocialConnectorContract.Photo;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
+import cl.josemanuel.socialconnector2.entities.MessageEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
 public class PhotoDB {
@@ -20,62 +22,74 @@ public class PhotoDB {
         this.mDbHelper = new SocialConnectorDBHelper(context);
     }
 
-    public long insertPhoto(PhotoEntity photo) {
+    public long insertPhoto(PhotoEntity photo, long id_contact) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(Photo.URL, photo.getUrl());
-        values.put(Photo.PATH, photo.getPath());
-        values.put(Photo.SEEN, photo.isSeen());
-        values.put(Photo.DATE, String.valueOf(photo.getDate()));
-        long row = db.insert(Photo.TABLE_NAME, null, values);
+        //Guardar foto
+        ContentValues photoValues = new ContentValues();
+        photoValues.put(Photo.URL, photo.getUrl());
+        photoValues.put(Photo.CONTACT, id_contact);
+        photoValues.put(Photo.PATH, photo.getPath());
+        photoValues.put(Photo.SEEN, photo.isSeen());
+        photoValues.put(Photo.DATE, String.valueOf(photo.getDate()));
+        long id_photo = db.insert(Photo.TABLE_NAME, null, photoValues);
+
+        // Guardar mensaje
+        ContentValues messageValues = new ContentValues();
+        messageValues.put(Message.TEXT, photo.getMessage().getText());
+        messageValues.put(Message.DATE, String.valueOf(photo.getMessage().getDate()));
+        messageValues.put(Message.CONTACT, id_contact);
+        messageValues.put(Message.PHOTO, id_photo);
+        long id_message = db.insert(Message.TABLE_NAME, null, messageValues);
+
+        //Actualizar id photo en contacto
+        ContentValues updatePhotoValues = new ContentValues();
+        updatePhotoValues.put(Photo.MESSAGE, id_message);
+
+        String where = Photo._ID + " = ?";
+        String[] whereArgs = {id_photo + ""};
+
+        db.update(Photo.TABLE_NAME, updatePhotoValues, where, whereArgs);
+
         db.close();
-        return row;
+        return id_message;
     }
 
-    public long insertContact(ContactEntity contact) {
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-
-        long avatar_id = insertPhoto(contact.getAvatar());
-
-        values.put(Contact.NAME, contact.getName());
-        values.put(Contact.EMAIL, contact.getEmail());
-        values.put(Contact.SKYPE, contact.getSkype());
-        values.put(Contact.AVATAR, avatar_id);
-        long row = db.insert(Contact.TABLE_NAME, null, values);
-
-        db.close();
-        return row;
-    }
-
-    public ArrayList<ContactEntity> getContacts() {
+    public ArrayList<PhotoEntity> getPhotos(long id_contacto) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        Cursor c = db.rawQuery("Select * from " + Contact.TABLE_NAME +
-                "join " + Photo.TABLE_NAME +
-                "where " + Contact.AVATAR + "=" + Photo._ID, null);
+        Cursor c = db.rawQuery("Select * from " + Photo.TABLE_NAME +
+                " join " + Contact.TABLE_NAME +
+                " on " + Photo.TABLE_NAME + "." + Photo.CONTACT + "=" + Contact.TABLE_NAME + "." + Contact._ID +
+                " join " + Message.TABLE_NAME +
+                " on " + Photo.TABLE_NAME + "." + Photo.MESSAGE + "=" + Message.TABLE_NAME + "." + Message._ID +
+                " where " + Photo.TABLE_NAME + "." + Photo.CONTACT + "=" + id_contacto, null);
 
         c.moveToFirst();
-        ArrayList<ContactEntity> contacts = new ArrayList<>();
-        while (!c.isAfterLast()){
-            ContactEntity contact = new ContactEntity(
-                    c.getString(c.getColumnIndexOrThrow(Contact.NAME)),
-                    c.getString(c.getColumnIndexOrThrow(Contact.EMAIL)),
-                    c.getString(c.getColumnIndexOrThrow(Contact.SKYPE)));
-            contact.setId(c.getInt(c.getColumnIndexOrThrow(Contact._ID)));
-
+        ArrayList<PhotoEntity> photos = new ArrayList<>();
+        while (!c.isAfterLast()) {
             PhotoEntity photo = new PhotoEntity(
                     c.getString(c.getColumnIndexOrThrow(Photo.URL)),
                     c.getString(c.getColumnIndexOrThrow(Photo.PATH)),
                     null);
             photo.setId(c.getInt(c.getColumnIndexOrThrow(Photo._ID)));
-            contact.setAvatar(photo);
-            contacts.add(contact);
+
+            MessageEntity message = new MessageEntity(
+                    c.getString(c.getColumnIndexOrThrow(Message.TEXT)),
+                    null,
+                    c.getInt(c.getColumnIndexOrThrow(Message.SEEN)) > 0);
+
+            ContactEntity contact = new ContactEntity(
+                    c.getString(c.getColumnIndexOrThrow(Contact.NAME)),
+                    c.getString(c.getColumnIndexOrThrow(Contact.EMAIL)),
+                    c.getString(c.getColumnIndexOrThrow(Contact.SKYPE)));
+
+            photo.setMessage(message);
+            photo.setContact(contact);
+            photos.add(photo);
             c.moveToNext();
         }
         db.close();
-        return contacts;
+        return photos;
     }
 }
