@@ -27,7 +27,7 @@ public class ContactsDummy {
 
         PhotoDB photoDB = new PhotoDB(activity);
 
-        ContactEntity contact1 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test1), "test@gmail.com", "");
+        ContactEntity contact1 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test1), "test@gmail.com", "test");
         contact1.setAvatar(new PhotoEntity("", createImage("dog.jpg"), new Date()));
 
         photoDB.insertContact(contact1);

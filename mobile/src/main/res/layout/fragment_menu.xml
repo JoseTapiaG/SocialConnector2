@@ -7,6 +7,35 @@
 
 
     <LinearLayout
+        android:id="@+id/skypeButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/menu_album"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_album" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:textStyle="bold"
+            android:textSize="@dimen/menu_text_size"
+            android:gravity="center_horizontal"
+            android:text="@string/menu_skype"
+            android:textColor="@color/menu_text_color" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/albumButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +45,6 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
