@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.fragments.ContentFragment;
+import cl.josemanuel.socialconnector2.services.ContactService;
 import cl.josemanuel.socialconnector2.services.PhotoService;
 import github.ankyl.castscreen.CastScreenActivity;
 
@@ -16,12 +17,14 @@ public class MainActivity extends CastScreenActivity {
 
     // Photo Service
     public static PhotoService photoService;
+    public static ContactService contactService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         photoService = new PhotoService(this);
+        contactService = new ContactService(this);
         initContentFragment();
     }
 

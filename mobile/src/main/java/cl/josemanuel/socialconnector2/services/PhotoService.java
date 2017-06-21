@@ -7,12 +7,19 @@ import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
+import java.util.ArrayList;
 
+import cl.josemanuel.socialconnector2.database.PhotoDB;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
 public class PhotoService {
 
+    PhotoDB photoDB;
+
     public PhotoService(Context context) {
+
+        photoDB = new PhotoDB(context);
+
         String filepath = Environment.getExternalStorageDirectory().getPath()
                 + "/EmailImages";
         File folder = new File(filepath);
@@ -23,7 +30,7 @@ public class PhotoService {
         }
     }
 
-    public Bitmap getPhoto(PhotoEntity photo){
+    public Bitmap getBitmap(PhotoEntity photo){
         File imgFile = new File(photo.getPath());
         if(imgFile.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
@@ -40,5 +47,17 @@ public class PhotoService {
     }
 
     private void savePhoto() {
+    }
+
+    public ArrayList<PhotoEntity> getPhotos(long idContacto){
+        return photoDB.getPhotos(idContacto);
+    }
+
+    public ArrayList<PhotoEntity> getNewPhotos(){
+        return photoDB.getNewPhotos();
+    }
+
+    public void updatePhotoSeenState(long id) {
+        photoDB.updatePhoto(id);
     }
 }

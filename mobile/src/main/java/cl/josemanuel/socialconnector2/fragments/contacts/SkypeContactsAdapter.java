@@ -1,12 +1,9 @@
 package cl.josemanuel.socialconnector2.fragments.contacts;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,7 +18,6 @@ import java.util.List;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
-import cl.josemanuel.socialconnector2.fragments.album.AlbumFragment;
 
 import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
 
@@ -51,7 +47,7 @@ public class SkypeContactsAdapter extends ArrayAdapter<ContactEntity> {
         ((TextView) view.findViewById(R.id.contact_name)).setText(contacts.get(position).getName());
 
         if (contacts.get(position).getAvatar().getBitmap() == null)
-            contacts.get(position).getAvatar().setBitmap(photoService.getPhoto(contacts.get(position).getAvatar()));
+            contacts.get(position).getAvatar().setBitmap(photoService.getBitmap(contacts.get(position).getAvatar()));
 
         ((ImageView) view.findViewById(R.id.contact_avatar)).setImageBitmap(contacts.get(position).getAvatar().getBitmap());
         return view;

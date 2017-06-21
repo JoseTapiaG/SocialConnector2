@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import cl.josemanuel.socialconnector2.R;
-import cl.josemanuel.socialconnector2.database.SocialDB;
+import cl.josemanuel.socialconnector2.database.ContactDB;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
@@ -24,18 +24,18 @@ public class ContactsDummy {
 
     public ArrayList<ContactEntity> getContacts() {
 
-        SocialDB socialDB = new SocialDB(activity);
+        ContactDB contactDB = new ContactDB(activity);
 
-        ArrayList<ContactEntity> contacts = socialDB.getContacts();
+        ArrayList<ContactEntity> contacts = contactDB.getContacts();
 
         if(contacts.isEmpty()){
             ContactEntity contact1 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test1), "test@gmail.com", "test");
             contact1.setAvatar(new PhotoEntity("", createImage("dog.jpg"), new Date()));
-            socialDB.insertContact(contact1);
+            contactDB.insertContact(contact1);
 
             ContactEntity contact2 = new ContactEntity(activity.getResources().getString(R.string.contact_name_test2), "test@gmail.com", "");
             contact2.setAvatar(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
-            socialDB.insertContact(contact2);
+            contactDB.insertContact(contact2);
         }
         return contacts;
     }

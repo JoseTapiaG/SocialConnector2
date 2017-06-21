@@ -51,7 +51,7 @@ public class AlbumContactsAdapter extends ArrayAdapter<ContactEntity> {
         ((TextView) view.findViewById(R.id.contact_name)).setText(contacts.get(position).getName());
 
         if (contacts.get(position).getAvatar().getBitmap() == null)
-            contacts.get(position).getAvatar().setBitmap(photoService.getPhoto(contacts.get(position).getAvatar()));
+            contacts.get(position).getAvatar().setBitmap(photoService.getBitmap(contacts.get(position).getAvatar()));
 
         ((ImageView) view.findViewById(R.id.contact_avatar)).setImageBitmap(contacts.get(position).getAvatar().getBitmap());
         return view;

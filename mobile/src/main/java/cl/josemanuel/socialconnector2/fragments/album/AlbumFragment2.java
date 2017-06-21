@@ -73,7 +73,7 @@ public class AlbumFragment2 extends Fragment {
         ((TextView) getView().findViewById(R.id.contact_name)).setText(currentMessage.getContact().getName());
 
         //search and set image of message
-        ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getPhoto(currentMessage.getPhoto()));
+        ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getBitmap(currentMessage.getPhoto()));
         updateView(getView());
     }
 

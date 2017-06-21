@@ -55,7 +55,7 @@ public class PhotoDB {
         return id_message;
     }
 
-    public ArrayList<PhotoEntity> getPhotos(long id_contacto) {
+    public ArrayList<PhotoEntity> getPhotos(long idContacto) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         Cursor c = db.rawQuery("Select * from " + Photo.TABLE_NAME +
@@ -63,7 +63,7 @@ public class PhotoDB {
                 " on " + Photo.TABLE_NAME + "." + Photo.CONTACT + "=" + Contact.TABLE_NAME + "." + Contact._ID +
                 " join " + Message.TABLE_NAME +
                 " on " + Photo.TABLE_NAME + "." + Photo.MESSAGE + "=" + Message.TABLE_NAME + "." + Message._ID +
-                " where " + Photo.TABLE_NAME + "." + Photo.CONTACT + "=" + id_contacto, null);
+                " where " + Photo.TABLE_NAME + "." + Photo.CONTACT + "=" + idContacto, null);
 
         c.moveToFirst();
         ArrayList<PhotoEntity> photos = new ArrayList<>();
@@ -129,5 +129,15 @@ public class PhotoDB {
         }
         db.close();
         return photos;
+    }
+
+    public void updatePhoto(long id) {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Photo.SEEN, 1);
+        String where = Photo._ID + " = ?";
+        String[] whereArgs = {id + ""};
+        db.update(Photo.TABLE_NAME, values, where, whereArgs);
+        db.close();
     }
 }

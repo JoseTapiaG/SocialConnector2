@@ -14,10 +14,8 @@ import java.util.ArrayList;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.constants.Constants;
-import cl.josemanuel.socialconnector2.dummy.MessagesDummy;
 import cl.josemanuel.socialconnector2.dummy.PhotoDummy;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
-import cl.josemanuel.socialconnector2.entities.MessageEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
 import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
@@ -50,9 +48,11 @@ public class AlbumFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView messageTextView = (TextView) view.findViewById(R.id.message_text);
-        messageTextView.setMovementMethod(new ScrollingMovementMethod());
-        changeMessage(0);
+        if(!photos.isEmpty()){
+            TextView messageTextView = (TextView) view.findViewById(R.id.message_text);
+            messageTextView.setMovementMethod(new ScrollingMovementMethod());
+            changePhoto(0);
+        }
     }
 
     public void updateView(View view) {
@@ -69,7 +69,7 @@ public class AlbumFragment extends Fragment {
         }
     }
 
-    public void changeMessage(int index){
+    public void changePhoto(int index){
         //update currentMessage
         currentPhoto = photos.get(index);
 
@@ -82,22 +82,24 @@ public class AlbumFragment extends Fragment {
 
 
         //search and set image of message
-        ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getPhoto(currentPhoto));
+        ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getBitmap(currentPhoto));
         updateView(getView());
+
+        photoService.updatePhotoSeenState(currentPhoto.getId());
     }
 
     private void setListeners(View view) {
         view.findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeMessage(++index);
+                changePhoto(++index);
             }
         });
 
         view.findViewById(R.id.prevButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeMessage(--index);
+                changePhoto(--index);
             }
         });
     }

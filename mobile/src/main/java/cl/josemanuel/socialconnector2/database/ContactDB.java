@@ -14,11 +14,11 @@ import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.MessageEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
-public class SocialDB {
+public class ContactDB {
 
     private SocialConnectorDBHelper mDbHelper;
 
-    public SocialDB(Context context) {
+    public ContactDB(Context context) {
         this.mDbHelper = new SocialConnectorDBHelper(context);
     }
 
