@@ -24,7 +24,7 @@ public class PhotoDummy {
     }
 
     public ArrayList<PhotoEntity> getPhotos(long id_contact) {
-        ArrayList<PhotoEntity> photos = new ArrayList<>();
+        ArrayList<PhotoEntity> photos;
 
         PhotoDB photoDB = new PhotoDB(activity);
 

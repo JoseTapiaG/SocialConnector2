@@ -55,7 +55,7 @@ public class MessageDB {
         return id_message;
     }
 
-    public ArrayList<ContactEntity> getMessages() {
+    public ArrayList<MessageEntity> getMessages() {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         Cursor c = db.rawQuery("Select * from " + Contact.TABLE_NAME +
@@ -81,6 +81,6 @@ public class MessageDB {
             c.moveToNext();
         }
         db.close();
-        return contacts;
+        return new ArrayList<>();
     }
 }

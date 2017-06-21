@@ -111,6 +111,6 @@ public class AlbumFragment2 extends Fragment {
 
     private void setTestEnv(ContactEntity contact) {
         MessagesDummy messagesDummy = new MessagesDummy(getActivity(), contact);
-        messages = messagesDummy.get3Messages();
+        messages = messagesDummy.getMessages();
     }
 }

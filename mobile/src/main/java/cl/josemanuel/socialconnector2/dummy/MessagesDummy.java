@@ -10,53 +10,40 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.database.MessageDB;
+import cl.josemanuel.socialconnector2.database.PhotoDB;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.MessageEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
 public class MessagesDummy {
 
-    private ContactEntity contact;
     private Activity activity;
 
-    public MessagesDummy(Activity activity, ContactEntity contact) {
+    public MessagesDummy(Activity activity) {
         this.activity = activity;
-        this.contact = contact;
     }
 
-    public ArrayList<MessageEntity> get3Messages() {
-        ArrayList<MessageEntity> messages = new ArrayList<>();
+    public ArrayList<MessageEntity> getMessages() {
+        ArrayList<MessageEntity> messages;
 
-        MessageEntity message1 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
-        message1.setPhoto(new PhotoEntity("", createImage("familia.jpg"), new Date()));
-        message1.setContact(
-                new ContactEntity(
-                        activity.getResources().getString(R.string.contact_name_test1),
-                        "asd",
-                        "asd"));
+        PhotoDB photoDB = new PhotoDB(activity);
+        MessageDB messageDB = new MessageDB(activity);
 
-        MessageEntity message2 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test2), new Date(), false);
-        message2.setPhoto(new PhotoEntity("", createImage("dog.jpg"), new Date()));
-        message2.setContact(
-                new ContactEntity(
-                        activity.getResources().getString(R.string.contact_name_test2),
-                        "asd",
-                        "asd"));
+        messages = messageDB.getMessages();
+        if (messages.isEmpty()) {
+            MessageEntity message1 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
+            message1.setPhoto(new PhotoEntity("", createImage("familia.jpg"), new Date()));
+            messageDB.insertMessage(message1, 1);
 
-        MessageEntity message3 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
-        message3.setPhoto(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
-        message3.setContact(
-                new ContactEntity(
-                        activity.getResources().getString(R.string.contact_name_test1),
-                        "asd",
-                        "asd"));
+            MessageEntity message2 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test2), new Date(), false);
+            message1.setPhoto(new PhotoEntity("", createImage("dog.jpg"), new Date()));
+            messageDB.insertMessage(message2, 1);
 
-        if (contact.getId() == 1) {
-            messages.add(message1);
-            messages.add(message3);
-        } else
-            messages.add(message2);
-
+            MessageEntity message3 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
+            message1.setPhoto(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
+            messageDB.insertMessage(message3, 2);
+        }
         return messages;
     }
 
