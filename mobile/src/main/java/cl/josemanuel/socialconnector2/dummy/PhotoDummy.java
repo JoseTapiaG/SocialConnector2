@@ -88,4 +88,28 @@ public class PhotoDummy {
         return f.getAbsolutePath();
     }
 
+    public ArrayList<PhotoEntity> getNewPhotos() {
+        ArrayList<PhotoEntity> photos;
+
+        PhotoDB photoDB = new PhotoDB(activity);
+
+        photos = photoDB.getPhotos();
+        if (photos.isEmpty()) {
+            PhotoEntity photo1 = new PhotoEntity("", createImage("familia.jpg"), new Date());
+            MessageEntity message1 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
+            photo1.setMessage(message1);
+            photoDB.insertPhoto(photo1, 1);
+
+            PhotoEntity photo2 = new PhotoEntity("", createImage("dog.jpg"), new Date());
+            MessageEntity message2 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test2), new Date(), false);
+            photo2.setMessage(message2);
+            photoDB.insertPhoto(photo2, 1);
+
+            PhotoEntity photo3 = new PhotoEntity("", createImage("tortuga.jpg"), new Date());
+            MessageEntity message3 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
+            photo3.setMessage(message3);
+            photoDB.insertPhoto(photo3, 2);
+        }
+        return photos;
+    }
 }

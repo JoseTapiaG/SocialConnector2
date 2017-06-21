@@ -8,21 +8,19 @@ import cl.josemanuel.socialconnector2.constants.Constants;
 import cl.josemanuel.socialconnector2.dummy.PhotoDummy;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 
-public class AlbumFragment extends PhotoFragment {
+public class NewPhotosFragment extends PhotoFragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        layoutRes = R.layout.fragment_album;
-
-        ContactEntity contact = (ContactEntity) getArguments().getSerializable("contact");
+        layoutRes = R.layout.fragment_new_photos;
         if (Constants.TEST) {
-            setTestEnv(contact);
+            setTestEnv();
         }
     }
 
-    private void setTestEnv(ContactEntity contact) {
+    private void setTestEnv() {
         PhotoDummy photoDummy = new PhotoDummy(getActivity());
-        photos = photoDummy.getPhotos(contact.getId());
+        photos = photoDummy.getNewPhotos();
     }
 }
