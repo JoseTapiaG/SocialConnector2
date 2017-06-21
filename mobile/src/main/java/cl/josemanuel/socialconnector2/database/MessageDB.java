@@ -58,29 +58,41 @@ public class MessageDB {
     public ArrayList<MessageEntity> getMessages() {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        Cursor c = db.rawQuery("Select * from " + Contact.TABLE_NAME +
-                " join " + Photo.TABLE_NAME +
-                " where " + Contact.AVATAR + "=" + Photo.TABLE_NAME + "." + Photo._ID, null);
+        Cursor c = db.rawQuery("Select * from " + Message.TABLE_NAME +
+                " join " + Contact.TABLE_NAME +
+                " on " + Message.TABLE_NAME + "." + Message.CONTACT + "=" + Contact.TABLE_NAME + "." + Contact._ID +
+                "left join " + Photo.TABLE_NAME +
+                " on " + Message.TABLE_NAME + "." + Message.PHOTO + "=" + Photo.TABLE_NAME + "." + Photo._ID , null);
 
         c.moveToFirst();
-        ArrayList<ContactEntity> contacts = new ArrayList<>();
+        ArrayList<MessageEntity> messages = new ArrayList<>();
         while (!c.isAfterLast()) {
+
+            MessageEntity message = new MessageEntity(
+                    c.getString(c.getColumnIndexOrThrow(Message.TEXT)),
+                    null,
+                    c.getInt(c.getColumnIndexOrThrow(Message.SEEN)) > 0);
+
             ContactEntity contact = new ContactEntity(
                     c.getString(c.getColumnIndexOrThrow(Contact.NAME)),
                     c.getString(c.getColumnIndexOrThrow(Contact.EMAIL)),
                     c.getString(c.getColumnIndexOrThrow(Contact.SKYPE)));
-            contact.setId(c.getInt(c.getColumnIndexOrThrow(Contact._ID)));
 
-            PhotoEntity photo = new PhotoEntity(
-                    c.getString(c.getColumnIndexOrThrow(Photo.URL)),
-                    c.getString(c.getColumnIndexOrThrow(Photo.PATH)),
-                    null);
-            photo.setId(c.getInt(c.getColumnIndexOrThrow(Photo._ID)));
-            contact.setAvatar(photo);
-            contacts.add(contact);
+            message.setContact(contact);
+
+            if(c.getColumnIndexOrThrow(Message.TEXT) > 0){
+                PhotoEntity photo = new PhotoEntity(
+                        c.getString(c.getColumnIndexOrThrow(Photo.URL)),
+                        c.getString(c.getColumnIndexOrThrow(Photo.PATH)),
+                        null);
+                photo.setId(c.getInt(c.getColumnIndexOrThrow(Photo._ID)));
+                message.setPhoto(photo);
+            }
+
+            messages.add(message);
             c.moveToNext();
         }
         db.close();
-        return new ArrayList<>();
+        return messages;
     }
 }
