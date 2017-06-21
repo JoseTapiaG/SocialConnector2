@@ -31,7 +31,6 @@ public class PhotoService {
         }
         else {
             searchPhoto(photo.getUrl());
-            //TODO search image if image in path doesnt exist
         }
         return null;
     }

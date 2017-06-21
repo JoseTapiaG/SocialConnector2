@@ -92,4 +92,42 @@ public class PhotoDB {
         db.close();
         return photos;
     }
+
+    public ArrayList<PhotoEntity> getNewPhotos() {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        Cursor c = db.rawQuery("Select * from " + Photo.TABLE_NAME +
+                " join " + Contact.TABLE_NAME +
+                " on " + Photo.TABLE_NAME + "." + Photo.CONTACT + "=" + Contact.TABLE_NAME + "." + Contact._ID +
+                " join " + Message.TABLE_NAME +
+                " on " + Photo.TABLE_NAME + "." + Photo.MESSAGE + "=" + Message.TABLE_NAME + "." + Message._ID +
+                " where " + Photo.TABLE_NAME + "." + Photo.SEEN + "=0", null);
+
+        c.moveToFirst();
+        ArrayList<PhotoEntity> photos = new ArrayList<>();
+        while (!c.isAfterLast()) {
+            PhotoEntity photo = new PhotoEntity(
+                    c.getString(c.getColumnIndexOrThrow(Photo.URL)),
+                    c.getString(c.getColumnIndexOrThrow(Photo.PATH)),
+                    null);
+            photo.setId(c.getInt(c.getColumnIndexOrThrow(Photo._ID)));
+
+            MessageEntity message = new MessageEntity(
+                    c.getString(c.getColumnIndexOrThrow(Message.TEXT)),
+                    null,
+                    c.getInt(c.getColumnIndexOrThrow(Message.SEEN)) > 0);
+
+            ContactEntity contact = new ContactEntity(
+                    c.getString(c.getColumnIndexOrThrow(Contact.NAME)),
+                    c.getString(c.getColumnIndexOrThrow(Contact.EMAIL)),
+                    c.getString(c.getColumnIndexOrThrow(Contact.SKYPE)));
+
+            photo.setMessage(message);
+            photo.setContact(contact);
+            photos.add(photo);
+            c.moveToNext();
+        }
+        db.close();
+        return photos;
+    }
 }
