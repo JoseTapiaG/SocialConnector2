@@ -17,6 +17,7 @@ import cl.josemanuel.socialconnector2.constants.Constants;
 import cl.josemanuel.socialconnector2.dummy.MessagesDummy;
 import cl.josemanuel.socialconnector2.entities.MessageEntity;
 
+import static cl.josemanuel.socialconnector2.activities.MainActivity.messageService;
 import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
 
 public class NewMessagesFragment extends Fragment {
@@ -28,14 +29,7 @@ public class NewMessagesFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Constants.TEST) {
-            setTestEnv();
-        }
-    }
-
-    private void setTestEnv() {
-        MessagesDummy messagesDummy = new MessagesDummy(getActivity());
-        messages = messagesDummy.getMessages();
+        messages = messageService.getMessages();
     }
 
     @Nullable

@@ -22,7 +22,7 @@ public class ContactsDummy {
         this.activity = activity;
     }
 
-    public ArrayList<ContactEntity> getContacts() {
+    public void loadContacts() {
 
         ContactDB contactDB = new ContactDB(activity);
 
@@ -37,7 +37,6 @@ public class ContactsDummy {
             contact2.setAvatar(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
             contactDB.insertContact(contact2);
         }
-        return contacts;
     }
 
     public String createImage(String photoName) {

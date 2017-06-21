@@ -8,6 +8,8 @@ import cl.josemanuel.socialconnector2.constants.Constants;
 import cl.josemanuel.socialconnector2.dummy.PhotoDummy;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 
+import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
+
 public class AlbumFragment extends PhotoFragment {
 
     @Override
@@ -16,13 +18,6 @@ public class AlbumFragment extends PhotoFragment {
         layoutRes = R.layout.fragment_album;
 
         ContactEntity contact = (ContactEntity) getArguments().getSerializable("contact");
-        if (Constants.TEST) {
-            setTestEnv(contact);
-        }
-    }
-
-    private void setTestEnv(ContactEntity contact) {
-        PhotoDummy photoDummy = new PhotoDummy(getActivity());
-        photos = photoDummy.getPhotos(contact.getId());
+        photos = photoService.getPhotos(contact.getId());
     }
 }

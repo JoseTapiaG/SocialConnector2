@@ -18,6 +18,7 @@ import cl.josemanuel.socialconnector2.dummy.MessagesDummy;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.MessageEntity;
 
+import static cl.josemanuel.socialconnector2.activities.MainActivity.messageService;
 import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
 
 public class AlbumFragment2 extends Fragment {
@@ -29,10 +30,7 @@ public class AlbumFragment2 extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ContactEntity contact = (ContactEntity) getArguments().getSerializable("contact");
-        if (Constants.TEST) {
-            setTestEnv(contact);
-        }
+        messages = messageService.getMessages();
     }
 
     @Nullable
@@ -107,10 +105,5 @@ public class AlbumFragment2 extends Fragment {
         args.putSerializable("message", currentMessage);
         photoContentDialog.setArguments(args);
         photoContentDialog.show(getFragmentManager(), "missiles");
-    }
-
-    private void setTestEnv(ContactEntity contact) {
-        MessagesDummy messagesDummy = new MessagesDummy(getActivity(), contact);
-        messages = messagesDummy.getMessages();
     }
 }

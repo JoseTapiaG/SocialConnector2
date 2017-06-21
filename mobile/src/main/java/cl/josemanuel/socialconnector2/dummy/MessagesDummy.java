@@ -11,8 +11,6 @@ import java.util.Date;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.database.MessageDB;
-import cl.josemanuel.socialconnector2.database.PhotoDB;
-import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.MessageEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 
@@ -24,10 +22,9 @@ public class MessagesDummy {
         this.activity = activity;
     }
 
-    public ArrayList<MessageEntity> getMessages() {
+    public ArrayList<MessageEntity> loadMessages() {
         ArrayList<MessageEntity> messages;
 
-        PhotoDB photoDB = new PhotoDB(activity);
         MessageDB messageDB = new MessageDB(activity);
 
         messages = messageDB.getMessages();

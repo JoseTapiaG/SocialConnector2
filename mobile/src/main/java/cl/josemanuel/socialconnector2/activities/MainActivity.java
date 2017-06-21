@@ -7,10 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.dummy.ContactsDummy;
+import cl.josemanuel.socialconnector2.dummy.MessagesDummy;
+import cl.josemanuel.socialconnector2.dummy.PhotoDummy;
 import cl.josemanuel.socialconnector2.fragments.ContentFragment;
 import cl.josemanuel.socialconnector2.services.ContactService;
+import cl.josemanuel.socialconnector2.services.MessageService;
 import cl.josemanuel.socialconnector2.services.PhotoService;
 import github.ankyl.castscreen.CastScreenActivity;
+
+import static cl.josemanuel.socialconnector2.constants.Constants.TEST;
 
 
 public class MainActivity extends CastScreenActivity {
@@ -18,6 +24,7 @@ public class MainActivity extends CastScreenActivity {
     // Photo Service
     public static PhotoService photoService;
     public static ContactService contactService;
+    public static MessageService messageService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +33,19 @@ public class MainActivity extends CastScreenActivity {
         photoService = new PhotoService(this);
         contactService = new ContactService(this);
         initContentFragment();
+        if(TEST){
+            setTestEnv();
+        }
+    }
+
+    private void setTestEnv(){
+        ContactsDummy contactsDummy = new ContactsDummy(this);
+        MessagesDummy messagesDummy = new MessagesDummy(this);
+        PhotoDummy photoDummy = new PhotoDummy(this);
+
+        contactsDummy.loadContacts();
+        messagesDummy.loadMessages();
+        photoDummy.loadPhotos();
     }
 
     private void initContentFragment() {

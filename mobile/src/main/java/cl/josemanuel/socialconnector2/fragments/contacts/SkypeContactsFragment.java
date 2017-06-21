@@ -12,6 +12,9 @@ import android.widget.ListView;
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.dummy.ContactsDummy;
 
+import static cl.josemanuel.socialconnector2.activities.MainActivity.contactService;
+import static cl.josemanuel.socialconnector2.activities.MainActivity.messageService;
+
 public class SkypeContactsFragment extends Fragment{
 
     @Override
@@ -23,12 +26,11 @@ public class SkypeContactsFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ContactsDummy contactsDummy = new ContactsDummy(getActivity());
         view.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.background_album_active));
         ListView listView = (ListView) view.findViewById(R.id.contacts_scrollview);
         listView.setAdapter(new SkypeContactsAdapter(
                 getActivity(),
                 R.layout.item_contact,
-                contactsDummy.getContacts()));
+                contactService.getContacts()));
     }
 }
