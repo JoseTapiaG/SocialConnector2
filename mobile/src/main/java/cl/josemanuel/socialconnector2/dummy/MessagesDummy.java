@@ -34,11 +34,11 @@ public class MessagesDummy {
             messageDB.insertMessage(message1, 1);
 
             MessageEntity message2 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test2), new Date(), false);
-            message1.setPhoto(new PhotoEntity("", createImage("dog.jpg"), new Date()));
+            message2.setPhoto(new PhotoEntity("", createImage("dog.jpg"), new Date()));
             messageDB.insertMessage(message2, 1);
 
             MessageEntity message3 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
-            message1.setPhoto(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
+            message3.setPhoto(new PhotoEntity("", createImage("tortuga.jpg"), new Date()));
             messageDB.insertMessage(message3, 2);
         }
         return messages;

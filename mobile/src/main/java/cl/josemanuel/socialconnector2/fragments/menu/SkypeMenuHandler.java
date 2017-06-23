@@ -10,7 +10,7 @@ public class SkypeMenuHandler extends MenuHandler {
 
     public SkypeMenuHandler(MenuFragment menuFragment) {
         super(menuFragment);
-        backgroundDrawable = R.drawable.menu_album_active;
+        backgroundDrawable = R.drawable.menu_skype_active;
     }
 
     public void onClick(View v) {
@@ -20,6 +20,6 @@ public class SkypeMenuHandler extends MenuHandler {
 
     @Override
     protected void removeActiveDrawable() {
-        currentView.setBackground(ContextCompat.getDrawable(menuFragment.getActivity(), R.drawable.menu_album));
+        currentView.setBackground(ContextCompat.getDrawable(menuFragment.getActivity(), R.drawable.menu_skype));
     }
 }

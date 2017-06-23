@@ -42,11 +42,9 @@ public class MainActivity extends CastScreenActivity {
     private void setTestEnv(){
         ContactsDummy contactsDummy = new ContactsDummy(this);
         MessagesDummy messagesDummy = new MessagesDummy(this);
-        PhotoDummy photoDummy = new PhotoDummy(this);
 
         contactsDummy.loadContacts();
         messagesDummy.loadMessages();
-        photoDummy.loadPhotos();
     }
 
     private void initContentFragment() {

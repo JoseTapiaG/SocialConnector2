@@ -174,7 +174,7 @@ public class PhotoDB {
         values.put(Photo.SEEN, 1);
         String where = Photo._ID + " = ?";
         String[] whereArgs = {id + ""};
-        db.update(Photo.TABLE_NAME, values, where, whereArgs);
+        int update = db.update(Photo.TABLE_NAME, values, where, whereArgs);
         db.close();
     }
 }

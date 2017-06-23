@@ -16,26 +16,25 @@
     <!--Menu texto-->
     <color name="menu_text_color">#FFFFFF</color>
 
+    <!--Menu Skype-->
+    <color name="background_phone_call">#324D5C</color>
+    <color name="background_phone_call_active">#324D5C</color>
+
     <!--Menu album-->
-    <color name="background_album">#324D5C</color>
-    <color name="background_album_active">#324D5C</color>
+    <color name="background_album">#46B29D</color>
+    <color name="background_album_active">#46B29D</color>
 
     <!--Menu Enviar mensaje-->
-    <color name="background_new_photos">#46B29D</color>
-    <color name="background_new_photos_active">#46B29D</color>
+    <color name="background_new_photos">#F0CA4D</color>
+    <color name="background_new_photos_active">#F0CA4D</color>
 
     <!--Menu fotos nuevas-->
-    <color name="background_send_message">#F0CA4D</color>
-    <color name="background_send_message_active">#F0CA4D</color>
+    <color name="background_send_message">#E37B40</color>
+    <color name="background_send_message_active">#E37B40</color>
 
     <!--Menu mensajes nuevos-->
-    <color name="background_new_messages">#E37B40</color>
-    <color name="background_new_messages_active">#E37B40</color>
-
-    <!--Menu mensajes nuevos-->
-    <color name="background_phone_call">#DE5B49</color>
-    <color name="background_phone_call_active">#DE5B49</color>
-
+    <color name="background_new_messages">#DE5B49</color>
+    <color name="background_new_messages_active">#DE5B49</color>
 
     <!--Otros-->
     <color name="background_no_content">#3d9c8a</color>

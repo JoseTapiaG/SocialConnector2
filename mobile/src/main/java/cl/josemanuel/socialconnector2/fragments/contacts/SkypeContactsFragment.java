@@ -26,7 +26,7 @@ public class SkypeContactsFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.background_album_active));
+        view.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.background_phone_call_active));
         ListView listView = (ListView) view.findViewById(R.id.contacts_scrollview);
         listView.setAdapter(new SkypeContactsAdapter(
                 getActivity(),
