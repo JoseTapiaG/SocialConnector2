@@ -58,34 +58,39 @@ public class MessageDB {
     public ArrayList<MessageEntity> getMessages() {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        Cursor c = db.rawQuery("Select * from " + Message.TABLE_NAME +
+        Cursor c = db.rawQuery("Select " + Message.SELECT_ALL + ", " +
+                Contact.SELECT_ALL + ", " +
+                Photo.SELECT_ALL +
+                " from " + Message.TABLE_NAME +
                 " join " + Contact.TABLE_NAME +
                 " on " + Message.TABLE_NAME + "." + Message.CONTACT + "=" + Contact.TABLE_NAME + "." + Contact._ID +
-                "left join " + Photo.TABLE_NAME +
-                " on " + Message.TABLE_NAME + "." + Message.PHOTO + "=" + Photo.TABLE_NAME + "." + Photo._ID , null);
+                " left join " + Photo.TABLE_NAME +
+                " on " + Message.TABLE_NAME + "." + Message.PHOTO + "=" + Photo.TABLE_NAME + "." + Photo._ID, null);
 
         c.moveToFirst();
         ArrayList<MessageEntity> messages = new ArrayList<>();
         while (!c.isAfterLast()) {
 
             MessageEntity message = new MessageEntity(
-                    c.getString(c.getColumnIndexOrThrow(Message.TEXT)),
+                    c.getString(c.getColumnIndexOrThrow(Message.TABLE_NAME + "_" + Message.TEXT)),
                     null,
-                    c.getInt(c.getColumnIndexOrThrow(Message.SEEN)) > 0);
+                    c.getInt(c.getColumnIndexOrThrow(Message.TABLE_NAME + "_" + Message.SEEN)) > 0);
+            message.setId(c.getInt(c.getColumnIndexOrThrow(Message.TABLE_NAME + "_" + Message._ID)));
 
             ContactEntity contact = new ContactEntity(
-                    c.getString(c.getColumnIndexOrThrow(Contact.NAME)),
-                    c.getString(c.getColumnIndexOrThrow(Contact.EMAIL)),
-                    c.getString(c.getColumnIndexOrThrow(Contact.SKYPE)));
+                    c.getString(c.getColumnIndexOrThrow(Contact.TABLE_NAME + "_" + Contact.NAME)),
+                    c.getString(c.getColumnIndexOrThrow(Contact.TABLE_NAME + "_" + Contact.EMAIL)),
+                    c.getString(c.getColumnIndexOrThrow(Contact.TABLE_NAME + "_" + Contact.SKYPE)));
+            contact.setId(c.getInt(c.getColumnIndexOrThrow(Contact.TABLE_NAME + "_" + Contact._ID)));
 
             message.setContact(contact);
 
-            if(c.getColumnIndexOrThrow(Message.TEXT) > 0){
+            if (c.getInt(c.getColumnIndexOrThrow(Message.TABLE_NAME + "_" + Message.PHOTO)) != 0) {
                 PhotoEntity photo = new PhotoEntity(
-                        c.getString(c.getColumnIndexOrThrow(Photo.URL)),
-                        c.getString(c.getColumnIndexOrThrow(Photo.PATH)),
+                        c.getString(c.getColumnIndexOrThrow(Photo.TABLE_NAME + "_" + Photo.URL)),
+                        c.getString(c.getColumnIndexOrThrow(Photo.TABLE_NAME + "_" + Photo.PATH)),
                         null);
-                photo.setId(c.getInt(c.getColumnIndexOrThrow(Photo._ID)));
+                photo.setId(c.getInt(c.getColumnIndexOrThrow(Photo.TABLE_NAME + "_" + Photo._ID)));
                 message.setPhoto(photo);
             }
 

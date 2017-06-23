@@ -32,6 +32,7 @@ public class MainActivity extends CastScreenActivity {
         setContentView(R.layout.activity_main);
         photoService = new PhotoService(this);
         contactService = new ContactService(this);
+        messageService = new MessageService(this);
         initContentFragment();
         if(TEST){
             setTestEnv();

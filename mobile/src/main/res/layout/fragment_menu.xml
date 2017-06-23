@@ -89,7 +89,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/menu_text_size"
             android:gravity="center_horizontal"
-            android:text="@string/menu_new_messages"
+            android:text="@string/menu_new_photos"
             android:textColor="@color/menu_text_color" />
     </LinearLayout>
 

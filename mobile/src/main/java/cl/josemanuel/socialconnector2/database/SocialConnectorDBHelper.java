@@ -13,7 +13,7 @@ public class SocialConnectorDBHelper extends SQLiteOpenHelper {
     private static final String INTEGER_TYPE = " INTEGER";
     private static final String BOOLEAN_TYPE = " BOOLEAN";
     private static final String DATABASE_NAME = " SocialConnector.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 7;
     private static final String COMMA_SEP = ", ";
 
     private static final String SQL_CREATE_PHOTO =

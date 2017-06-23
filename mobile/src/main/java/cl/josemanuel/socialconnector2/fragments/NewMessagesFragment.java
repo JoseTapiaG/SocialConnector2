@@ -65,10 +65,10 @@ public class NewMessagesFragment extends Fragment {
 
         //search and set image of message
         if (currentMessage.getPhoto() == null) {
-            getView().findViewById(R.id.photoContainer).setVisibility(View.INVISIBLE);
-            ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getBitmap(currentMessage.getPhoto()));
+            getView().findViewById(R.id.photoContainer).setVisibility(View.GONE);
         } else {
             getView().findViewById(R.id.photoContainer).setVisibility(View.VISIBLE);
+            ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getBitmap(currentMessage.getPhoto()));
         }
 
         updateView(getView());
