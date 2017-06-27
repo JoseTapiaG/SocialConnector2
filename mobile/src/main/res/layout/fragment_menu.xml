@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_dark"
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/skypeButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,24 +17,24 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
+            android:paddingBottom="10dp"
             android:src="@drawable/ic_album" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="@dimen/menu_text_size"
             android:gravity="center_horizontal"
             android:text="@string/menu_skype"
+            android:layout_alignParentBottom="true"
             android:textColor="@color/menu_text_color" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/albumButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -47,24 +46,23 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
+            android:paddingBottom="10dp"
             android:src="@drawable/ic_album" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="@dimen/menu_text_size"
             android:gravity="center_horizontal"
             android:text="@string/menu_album"
+            android:layout_alignParentBottom="true"
             android:textColor="@color/menu_text_color" />
+    </RelativeLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/newPhotosButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -74,26 +72,46 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:paddingTop="15dp"
             android:scaleType="fitCenter"
+            android:paddingBottom="20dp"
             android:src="@drawable/ic_fotos_nuevas" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="@dimen/menu_text_size"
             android:gravity="center_horizontal"
             android:text="@string/menu_new_photos"
+            android:layout_alignParentBottom="true"
             android:textColor="@color/menu_text_color" />
-    </LinearLayout>
 
-    <LinearLayout
+        <LinearLayout
+            android:id="@+id/newPhotosCounter"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="@drawable/counter">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:text="12"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/sendMessageButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -103,26 +121,26 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:paddingBottom="10dp"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_enviar_mensaje" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="@dimen/menu_text_size"
             android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
             android:text="@string/menu_send_message"
             android:textColor="@color/menu_text_color" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/newMessagesButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -132,22 +150,42 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:padding="10dp"
             android:scaleType="fitCenter"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp"
             android:src="@drawable/ic_mensajes_nuevos" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="@dimen/menu_text_size"
             android:gravity="center_horizontal"
             android:text="@string/menu_new_messages"
+            android:layout_alignParentBottom="true"
             android:textColor="@color/menu_text_color" />
-    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/newMessagesCounter"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="@drawable/counter">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:text="12"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

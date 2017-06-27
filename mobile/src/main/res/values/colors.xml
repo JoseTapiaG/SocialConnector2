@@ -9,6 +9,9 @@
     <color name="titleBackground">#FFFFFF</color>
 
 
+    <!-- Counter-->
+    <color name="counterBackground">#e70404</color>
+
     <!-- Next-Prev button-->
     <color name="buttonNextPrev">#FFFFFF</color>
     <color name="buttonNextPrevPressed">#CCCCCC</color>
