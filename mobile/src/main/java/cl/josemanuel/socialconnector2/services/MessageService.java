@@ -20,4 +20,8 @@ public class MessageService {
     public ArrayList<MessageEntity> getMessages(){
         return messageDB.getMessages();
     }
+
+    public long countNewMessages(){
+        return messageDB.countNewMessages();
+    }
 }

@@ -3,6 +3,7 @@ package cl.josemanuel.socialconnector2.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
@@ -176,5 +177,11 @@ public class PhotoDB {
         String[] whereArgs = {id + ""};
         int update = db.update(Photo.TABLE_NAME, values, where, whereArgs);
         db.close();
+    }
+
+    public long countNewPhotos() {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        return DatabaseUtils.queryNumEntries(db, Photo.TABLE_NAME,
+                Photo.SEEN + "=0");
     }
 }

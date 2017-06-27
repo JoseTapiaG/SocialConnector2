@@ -60,4 +60,8 @@ public class PhotoService {
     public void updatePhotoSeenState(long id) {
         photoDB.updatePhoto(id);
     }
+
+    public long countNewPhotos() {
+        return photoDB.countNewPhotos();
+    }
 }
