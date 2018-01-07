@@ -9,9 +9,7 @@ import android.view.MenuItem;
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.dummy.ContactsDummy;
 import cl.josemanuel.socialconnector2.dummy.MessagesDummy;
-import cl.josemanuel.socialconnector2.dummy.PhotoDummy;
 import cl.josemanuel.socialconnector2.fragments.ContentFragment;
-import cl.josemanuel.socialconnector2.services.ContactService;
 import cl.josemanuel.socialconnector2.services.MessageService;
 import cl.josemanuel.socialconnector2.services.PhotoService;
 import github.ankyl.castscreen.CastScreenActivity;
@@ -23,7 +21,6 @@ public class MainActivity extends CastScreenActivity {
 
     // Photo Service
     public static PhotoService photoService;
-    public static ContactService contactService;
     public static MessageService messageService;
 
     @Override
@@ -31,7 +28,6 @@ public class MainActivity extends CastScreenActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         photoService = new PhotoService(this);
-        contactService = new ContactService(this);
         messageService = new MessageService(this);
         initContentFragment();
         if(TEST){

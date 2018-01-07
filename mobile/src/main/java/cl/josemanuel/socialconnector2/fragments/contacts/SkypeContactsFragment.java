@@ -9,13 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.util.List;
+
 import cl.josemanuel.socialconnector2.R;
-import cl.josemanuel.socialconnector2.dummy.ContactsDummy;
+import cl.josemanuel.socialconnector2.entities.ContactEntity;
+import cl.josemanuel.socialconnector2.services.ContactService;
+import cl.josemanuel.socialconnector2.util.LoadingUtil;
 
-import static cl.josemanuel.socialconnector2.activities.MainActivity.contactService;
-import static cl.josemanuel.socialconnector2.activities.MainActivity.messageService;
+public class SkypeContactsFragment extends Fragment implements ContactsFragment{
 
-public class SkypeContactsFragment extends Fragment{
+    LoadingUtil loadingContacts;
+    ListView listView;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        loadingContacts = new LoadingUtil(getActivity());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,10 +37,23 @@ public class SkypeContactsFragment extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.background_phone_call_active));
-        ListView listView = (ListView) view.findViewById(R.id.contacts_scrollview);
-        listView.setAdapter(new SkypeContactsAdapter(
-                getActivity(),
-                R.layout.item_contact,
-                contactService.getContacts()));
+        listView = (ListView) view.findViewById(R.id.contacts_scrollview);
+
+        loadingContacts.showLoadingDialog("Cargando contactos");
+        (new ContactService(getActivity())).execute(this);
+    }
+
+    @Override
+    public void setContacts(final List<ContactEntity> contacts) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                listView.setAdapter(new SkypeContactsAdapter(
+                        getActivity(),
+                        R.layout.item_contact,
+                        contacts));
+                loadingContacts.hideLoadingDialog();
+            }
+        });
     }
 }
