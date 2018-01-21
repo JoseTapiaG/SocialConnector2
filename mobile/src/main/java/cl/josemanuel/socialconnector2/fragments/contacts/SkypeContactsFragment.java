@@ -14,17 +14,17 @@ import java.util.List;
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.services.ContactService;
-import cl.josemanuel.socialconnector2.util.LoadingUtil;
+import cl.josemanuel.socialconnector2.dialogs.Loading;
 
 public class SkypeContactsFragment extends Fragment implements ContactsFragment{
 
-    LoadingUtil loadingContacts;
+    Loading loadingContacts;
     ListView listView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadingContacts = new LoadingUtil(getActivity());
+        loadingContacts = new Loading(getActivity());
     }
 
     @Override

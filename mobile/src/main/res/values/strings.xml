@@ -24,6 +24,12 @@
     <string name="menu_new_messages">Nuevos Mensajes</string>
     <string name="menu_new_photos">Nuevas Fotos</string>
 
+    <!--Login Social Connector-->
+    <string name="enviar_login_sc">Enviar</string>
+    <string name="cancelar_login_sc">Cancelar</string>
+    <string name="username_sc">Usuario</string>
+    <string name="pass_sc">Contraseña</string>
+
     <!--Test-->
     <string name="contact_name_test1">José Manuel</string>
     <string name="contenido_photo_test1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus nibh nec cursus varius. Suspendisse finibus, tortor vel tempus vulputate, elit massa tincidunt magna, at maximus leo metus sed massa. Nam sed efficitur dui. Maecenas vel odio non nisi gravida luctus. Fusce ac ex venenatis, sollicitudin ante sed, vehicula sapien...

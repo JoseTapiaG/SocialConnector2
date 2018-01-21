@@ -12,19 +12,23 @@ import android.widget.ListView;
 import java.util.List;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.dialogs.LoginSocialConnector;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.services.ContactService;
-import cl.josemanuel.socialconnector2.util.LoadingUtil;
+import cl.josemanuel.socialconnector2.dialogs.Loading;
+import cl.josemanuel.socialconnector2.services.LoginSocialConnectorService;
 
 public class AlbumContactsFragment extends Fragment implements ContactsFragment{
 
-    LoadingUtil loadingContacts;
+    Loading loadingContacts;
+    LoginSocialConnector loginSocialConnector;
     ListView listView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadingContacts = new LoadingUtil(getActivity());
+//        loadingContacts = new Loading(getActivity());
+        loginSocialConnector = new LoginSocialConnector(getActivity());
     }
 
     @Override
@@ -39,8 +43,9 @@ public class AlbumContactsFragment extends Fragment implements ContactsFragment{
         view.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.background_album_active));
         listView = (ListView) view.findViewById(R.id.contacts_scrollview);
 
-        loadingContacts.showLoadingDialog("Cargando contactos");
-        (new ContactService(getActivity())).execute(this);
+        loginSocialConnector.showLoginDialog();
+//        loadingContacts.showLoadingDialog("Cargando contactos");
+//        (new ContactService(getActivity())).execute(this);
     }
 
     @Override

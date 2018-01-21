@@ -1,4 +1,4 @@
-package cl.josemanuel.socialconnector2.util;
+package cl.josemanuel.socialconnector2.dialogs;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -7,12 +7,12 @@ import android.app.ProgressDialog;
  * Created by JoseManuel on 07-01-2018.
  */
 
-public class LoadingUtil{
+public class Loading {
 
     Activity activity;
     ProgressDialog loading;
 
-    public LoadingUtil(Activity activity) {
+    public Loading(Activity activity) {
         this.activity = activity;
     }
 
