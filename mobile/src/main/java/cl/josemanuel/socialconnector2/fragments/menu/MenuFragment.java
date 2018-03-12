@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import cl.josemanuel.socialconnector2.R;
@@ -81,5 +80,6 @@ public class MenuFragment extends Fragment {
         view.findViewById(R.id.sendMessageButton).setOnClickListener(new SendMessageMenuHandler(this));
         view.findViewById(R.id.newPhotosButton).setOnClickListener(new NewPhotosMenuHandler(this));
         view.findViewById(R.id.newMessagesButton).setOnClickListener(new NewMessagesMenuHandler(this));
+        view.findViewById(R.id.settingsButton).setOnClickListener(new SettingsMenuHandler(this));
     }
 }

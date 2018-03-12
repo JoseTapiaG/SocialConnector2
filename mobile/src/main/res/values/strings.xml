@@ -23,6 +23,11 @@
     <string name="menu_send_message">Enviar Mensaje</string>
     <string name="menu_new_messages">Nuevos Mensajes</string>
     <string name="menu_new_photos">Nuevas Fotos</string>
+    <string name="menu_settings">Configurar</string>
+
+    <!--Settings-->
+    <string name="settings_rrss">Configurar Redes Sociales</string>
+
 
     <!--Login Social Connector-->
     <string name="enviar_login_sc">Enviar</string>
