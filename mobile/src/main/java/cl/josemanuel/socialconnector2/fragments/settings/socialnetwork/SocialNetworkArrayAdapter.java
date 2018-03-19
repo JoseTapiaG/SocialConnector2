@@ -1,10 +1,11 @@
-package cl.josemanuel.socialconnector2.fragments.settings;
+package cl.josemanuel.socialconnector2.fragments.settings.socialnetwork;
 
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.fragments.settings.socialnetwork.SocialNetworkSetup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +44,7 @@ public class SocialNetworkArrayAdapter extends ArrayAdapter<SocialNetworkSetup> 
         View view = inflater.inflate(R.layout.settings_social_network, null);
 
         TextView name = (TextView) view.findViewById(R.id.sn_name);
-        EditText pass = (EditText) view.findViewById(R.id.sn_pass);
+        final EditText pass = (EditText) view.findViewById(R.id.sn_pass);
         Button configure = (Button) view.findViewById(R.id.sn_configure);
         ImageView image = (ImageView) view.findViewById(R.id.sn_icon);
         ImageView status = (ImageView) view.findViewById(R.id.sn_status);
@@ -57,7 +59,14 @@ public class SocialNetworkArrayAdapter extends ArrayAdapter<SocialNetworkSetup> 
         //get the image associated with this property
         int imageID = context.getResources().getIdentifier(sn.getIcon(), "drawable", context.getPackageName());
         image.setImageResource(imageID);
-        configure.setOnClickListener(sn.getSendListener());
+        configure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(pass.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+                sn.listener.apply(v, "password");
+            }
+        });
 
         return view;
     }

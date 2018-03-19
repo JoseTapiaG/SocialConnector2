@@ -1,6 +1,7 @@
-package cl.josemanuel.socialconnector2.fragments.settings;
+package cl.josemanuel.socialconnector2.fragments.settings.socialnetwork;
 
 import android.view.View;
+import android.widget.Toast;
 
 /**
  * Created by farodrig on 12-03-18.
@@ -14,7 +15,11 @@ public class SocialNetworkSetup {
     String extra;
     String icon;
     boolean connected;
-    View.OnClickListener sendListener = null;
+    Function<View, String, Void> listener = (view, pass) ->{
+        Toast toast = Toast.makeText(view.getContext(), "Default Message", Toast.LENGTH_SHORT);
+        toast.show();
+        return null;
+    };
 
 
     public SocialNetworkSetup (String id, String name){
@@ -30,19 +35,21 @@ public class SocialNetworkSetup {
     public String getExtra(){ return extra; }
     public String getIcon(){ return "ic_" + id; }
     public boolean getConnected(){ return connected; }
-    public View.OnClickListener getSendListener() { return sendListener; }
+    public Function<View, String, Void> getListener(){ return listener; }
 
     //Setters
     public SocialNetworkSetup setId(String id) {this.id = id; return this;}
     public SocialNetworkSetup setName(String name) {this.name = name; return this;}
     public SocialNetworkSetup setPass(String pass) {this.pass = pass; return this;}
     public SocialNetworkSetup setExtra(String extra) {this.extra = extra; return this;}
+    public SocialNetworkSetup setListener(Function<View, String, Void> listener) { this.listener = listener; return this; }
     public SocialNetworkSetup setConnected(boolean connected) {
         this.connected = connected;
         return this;
     }
-    public SocialNetworkSetup setSendListener(View.OnClickListener listener) {
-        this.sendListener = listener;
-        return this;
-    }
+}
+
+@FunctionalInterface
+interface Function<One, Two, Three> {
+    public Three apply(One one, Two two);
 }

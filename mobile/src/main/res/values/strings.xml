@@ -27,6 +27,7 @@
 
     <!--Settings-->
     <string name="settings_rrss">Configurar Redes Sociales</string>
+    <string name="settings_code">Código</string>
 
 
     <!--Login Social Connector-->
