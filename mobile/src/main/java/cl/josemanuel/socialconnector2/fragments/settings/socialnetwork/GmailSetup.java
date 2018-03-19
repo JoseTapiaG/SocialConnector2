@@ -21,12 +21,12 @@ public class GmailSetup extends SocialNetworkSetup {
 
     public GmailSetup(String name){
         super("gmail", name);
+        setRequireText(false);
         setListener((View view, String pass) -> {
-            GmailSetup setup = this;
             try {
                 String url = SocialNetworkService.configure(this.getId(), pass);
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://www.google.cl"));
+                i.setData(Uri.parse(url));
                 view.getContext().startActivity(i);
             } catch (Exception e) {
                 String msg = "Error conectando al servidor. Intente de nuevo más tarde.";

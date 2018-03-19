@@ -25,7 +25,7 @@ public class SocialNetworkService {
         if (sn.compareTo("telegram") == 0){
             throw new Exception();
         }
-        String url = "";
+        String url = "http://www.google.cl";
         return url;
     }
 }

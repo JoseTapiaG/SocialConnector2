@@ -19,7 +19,7 @@ public class TelegramSetup extends SocialNetworkSetup {
 
     public TelegramSetup(String name){
         super("telegram", name);
-        this.setRequireText(false);
+        setRequireText(false);
         setListener((View view, String pass) -> {
             TelegramSetup setup = this;
             try {

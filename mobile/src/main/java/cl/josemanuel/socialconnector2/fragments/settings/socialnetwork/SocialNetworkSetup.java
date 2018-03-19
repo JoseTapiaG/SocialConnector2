@@ -25,6 +25,7 @@ public class SocialNetworkSetup {
         this.id = id;
         this.name = name;
         connected = false;
+        requireText = true;
     }
 
     //Getters
