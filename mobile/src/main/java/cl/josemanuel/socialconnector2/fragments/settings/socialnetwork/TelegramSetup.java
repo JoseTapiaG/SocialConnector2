@@ -19,10 +19,12 @@ public class TelegramSetup extends SocialNetworkSetup {
 
     public TelegramSetup(String name){
         super("telegram", name);
+        this.setRequireText(false);
         setListener((View view, String pass) -> {
             TelegramSetup setup = this;
             try {
                 String result = SocialNetworkService.configure(this.getId(), pass);
+                this.setConnected(true);
             } catch (Exception e) {
                 LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
                 final View dialogView = inflater.inflate(R.layout.settings_code_dialog, null);
@@ -32,7 +34,7 @@ public class TelegramSetup extends SocialNetworkSetup {
                 builder.setView(dialogView);
 
                 builder
-                        .setTitle("Código de acceso no reconocido")
+                        .setTitle("Ingrese código de acceso")
                         .setMessage("Ingrese nuevo código enviado a su aplicación de Telegram.")
                         .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
                             @Override
@@ -41,6 +43,7 @@ public class TelegramSetup extends SocialNetworkSetup {
                                 Toast toast = Toast.makeText(view.getContext(), code.getText(), Toast.LENGTH_SHORT);
                                 toast.show();
                                 setup.getListener().apply(view, code.getText().toString());
+                                setup.setConnected(true);
                             }
                         })
                         .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
