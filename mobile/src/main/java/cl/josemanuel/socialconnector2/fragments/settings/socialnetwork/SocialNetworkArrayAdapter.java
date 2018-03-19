@@ -35,10 +35,9 @@ public class SocialNetworkArrayAdapter extends ArrayAdapter<SocialNetworkSetup> 
 
     //called when rendering the list
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        final SocialNetworkArrayAdapter adapter = this;
         //get the property we are displaying
-        SocialNetworkSetup sn = socialNetworks.get(position);
-
+        final SocialNetworkSetup sn = socialNetworks.get(position);
         //get the inflater and inflate the XML layout for each item
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.settings_social_network, null);
@@ -51,6 +50,9 @@ public class SocialNetworkArrayAdapter extends ArrayAdapter<SocialNetworkSetup> 
 
         //display trimmed excerpt for description
         name.setText(sn.getName());
+        if (!sn.getRequireText()){
+            pass.setVisibility(View.GONE);
+        }
         if (sn.getConnected()) {
             pass.setVisibility(View.GONE);
             configure.setVisibility(View.GONE);
@@ -64,7 +66,9 @@ public class SocialNetworkArrayAdapter extends ArrayAdapter<SocialNetworkSetup> 
             public void onClick(View v) {
                 InputMethodManager imm = (InputMethodManager)v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(pass.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-                sn.listener.apply(v, "password");
+                sn.listener.apply(v, pass.getText().toString());
+                adapter.remove(sn);
+                adapter.insert(sn, position);
             }
         });
 

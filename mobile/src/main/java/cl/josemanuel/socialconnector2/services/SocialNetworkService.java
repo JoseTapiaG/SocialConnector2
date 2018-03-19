@@ -2,6 +2,7 @@ package cl.josemanuel.socialconnector2.services;
 
 import java.util.ArrayList;
 
+import cl.josemanuel.socialconnector2.fragments.settings.socialnetwork.GmailSetup;
 import cl.josemanuel.socialconnector2.fragments.settings.socialnetwork.SocialNetworkSetup;
 import cl.josemanuel.socialconnector2.fragments.settings.socialnetwork.TelegramSetup;
 
@@ -14,9 +15,9 @@ public class SocialNetworkService {
 
     public static ArrayList<SocialNetworkSetup> getSocialNetworks() {
         ArrayList<SocialNetworkSetup> socialNetworks = new ArrayList<SocialNetworkSetup>();
-        socialNetworks.add(new TelegramSetup("Telegram"));
+        socialNetworks.add(new TelegramSetup("Telegram").setConnected(true));
         socialNetworks.add(new SocialNetworkSetup("skype", "Skype"));
-        socialNetworks.add(new SocialNetworkSetup("gmail", "Gmail").setConnected(true));
+        socialNetworks.add(new GmailSetup("Gmail"));
         return socialNetworks;
     }
 

@@ -12,8 +12,7 @@ public class SocialNetworkSetup {
     String id;
     String name;
     String pass;
-    String extra;
-    String icon;
+    boolean requireText;
     boolean connected;
     Function<View, String, Void> listener = (view, pass) ->{
         Toast toast = Toast.makeText(view.getContext(), "Default Message", Toast.LENGTH_SHORT);
@@ -32,8 +31,8 @@ public class SocialNetworkSetup {
     public String getId(){ return id; }
     public String getName(){ return name; }
     public String getPass(){ return pass; }
-    public String getExtra(){ return extra; }
     public String getIcon(){ return "ic_" + id; }
+    public boolean getRequireText(){ return requireText; }
     public boolean getConnected(){ return connected; }
     public Function<View, String, Void> getListener(){ return listener; }
 
@@ -41,8 +40,14 @@ public class SocialNetworkSetup {
     public SocialNetworkSetup setId(String id) {this.id = id; return this;}
     public SocialNetworkSetup setName(String name) {this.name = name; return this;}
     public SocialNetworkSetup setPass(String pass) {this.pass = pass; return this;}
-    public SocialNetworkSetup setExtra(String extra) {this.extra = extra; return this;}
-    public SocialNetworkSetup setListener(Function<View, String, Void> listener) { this.listener = listener; return this; }
+    public SocialNetworkSetup setRequireText(boolean requireText) {
+        this.requireText = requireText;
+        return this;
+    }
+    public SocialNetworkSetup setListener(Function<View, String, Void> listener) {
+        this.listener = listener;
+        return this;
+    }
     public SocialNetworkSetup setConnected(boolean connected) {
         this.connected = connected;
         return this;
