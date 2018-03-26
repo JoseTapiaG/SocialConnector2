@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.fragments.settings.socialnetwork.SocialNetworkSetup;
+import cl.josemanuel.socialconnector2.services.SecurityService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,9 @@ public class SocialNetworkArrayAdapter extends ArrayAdapter<SocialNetworkSetup> 
         Button configure = (Button) view.findViewById(R.id.sn_configure);
         ImageView image = (ImageView) view.findViewById(R.id.sn_icon);
         ImageView status = (ImageView) view.findViewById(R.id.sn_status);
+
+        String savedPass = new SecurityService().getPassword(context, sn.getId());
+        pass.setText(savedPass);
 
         //display trimmed excerpt for description
         name.setText(sn.getName());
