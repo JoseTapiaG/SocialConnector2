@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.alarms.SkypeSetupReceiver;
 import cl.josemanuel.socialconnector2.dummy.ContactsDummy;
 import cl.josemanuel.socialconnector2.dummy.MessagesDummy;
 import cl.josemanuel.socialconnector2.fragments.ContentFragment;
@@ -29,6 +30,7 @@ public class MainActivity extends CastScreenActivity {
         setContentView(R.layout.activity_main);
         photoService = new PhotoService(this);
         messageService = new MessageService(this);
+        new SkypeSetupReceiver().setReceiver(this);
         initContentFragment();
         if(TEST){
             setTestEnv();
