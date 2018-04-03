@@ -27,8 +27,13 @@ public class SecurityDB {
         String[] whereArgs = {social};
         Cursor c = db.query(SecurityPass.TABLE_NAME, null, where, whereArgs, null, null, null, "1");
 
-        if( c == null || !c.moveToFirst() ) return null;
-        return c.getString(c.getColumnIndexOrThrow(SecurityPass.PASS));
+        if( c == null || !c.moveToFirst() ) {
+            db.close();
+            return null;
+        }
+        String pass = c.getString(c.getColumnIndexOrThrow(SecurityPass.PASS));
+        db.close();
+        return pass;
     }
 
     public long insertPassword(String social, String pass){
@@ -41,8 +46,9 @@ public class SecurityDB {
         ContentValues securityValues = new ContentValues();
         securityValues.put(SecurityPass.SOCIAL, social);
         securityValues.put(SecurityPass.PASS, pass);
-
-        return db.insert(SecurityPass.TABLE_NAME, null, securityValues);
+        long res = db.insert(SecurityPass.TABLE_NAME, null, securityValues);
+        db.close();
+        return res;
     }
 
     private int updatePassword(String social, String pass) {
@@ -69,6 +75,8 @@ public class SecurityDB {
         String where = SecurityPass.SOCIAL + " = ?";
         String[] whereArgs = {social};
 
-        return db.delete(SecurityPass.TABLE_NAME, where, whereArgs);
+        int deleted = db.delete(SecurityPass.TABLE_NAME, where, whereArgs);
+        db.close();
+        return deleted;
     }
 }

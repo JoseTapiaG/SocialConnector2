@@ -65,7 +65,7 @@ public class SecurityService {
             InvalidAlgorithmParameterException {
 
         KeyPair keyPair = null;
-        KeyStore keyStore = keyStore = KeyStore.getInstance("AndroidKeyStore");
+        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
         keyStore.load(null);
         Certificate cert = keyStore.getCertificate(alias);
 
