@@ -28,6 +28,16 @@
     <!--Settings-->
     <string name="settings_rrss">Configurar Redes Sociales</string>
     <string name="settings_code">Código</string>
+    <string name="cant_save_password">No se pudo guardar la clave localmente</string>
+    <string name="error_connecting_server">Error conectando al servidor. Intente de nuevo más tarde.</string>
+    <string name="error_connecting_server_or_pass">Error conectando al servidor o clave incorrecta. Intente de nuevo más tarde.</string>
+
+    <!-- Setup Alarms -->
+    <string name="setup_alarm_tag">SOCIAL_SETUP</string>
+    <string name="not_password_in_db">Password no existe en la base de datos</string>
+    <string name="delete_short_alarm">Password no existe en la base de datos</string>
+    <string name="create_short_alarm">Password no existe en la base de datos</string>
+    <string name="reconfigure_error">No se pudo reconfigurar %1$d con social translator</string>
 
 
     <!--Login Social Connector-->
@@ -43,5 +53,9 @@
 
     <string name="contact_name_test2">Victor Leonardo</string>
     <string name="contenido_photo_test2">Duis congue leo feugiat, maximus enim eu, gravida dolor. Nunc fringilla neque ut pulvinar ultricies. Sed at eros turpis. Ut eget metus non ante tincidunt aliquet nec vitae nisi. Donec blandit leo sit amet enim molestie, quis egestas mauris vestibulum. Etiam malesuada, nisl id laoreet lacinia, augue orci iaculis neque, in condimentum...</string>
+
+    <!--Telegram Dialog-->
+    <string name="telegram_access_code">Ingrese código de acceso</string>
+    <string name="telegram_new_code">Ingrese nuevo código enviado a su aplicación de Telegram.</string>
 
 </resources>

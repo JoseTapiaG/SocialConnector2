@@ -21,5 +21,8 @@ public class SkypeSetupReceiver extends SetupReceiver {
         return setReceiver(context, SkypeSetupReceiver.class);
     }
 
-
+    @Override
+    public String getId() {
+        return this.id;
+    }
 }
