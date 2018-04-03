@@ -3,6 +3,7 @@ package cl.josemanuel.socialconnector2.fragments.settings.socialnetwork;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -30,12 +31,13 @@ public class TelegramSetup extends SocialNetworkSetup {
                 final View dialogView = inflater.inflate(R.layout.settings_code_dialog, null);
                         // Inflate and set the layout for the dialog
                 // Pass null as the parent view because its going in the dialog layout
+                Resources res = view.getResources();
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setView(dialogView);
 
                 builder
-                        .setTitle("Ingrese código de acceso")
-                        .setMessage("Ingrese nuevo código enviado a su aplicación de Telegram.")
+                        .setTitle(R.string.telegram_access_code)
+                        .setMessage(R.string.telegram_new_code)
                         .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

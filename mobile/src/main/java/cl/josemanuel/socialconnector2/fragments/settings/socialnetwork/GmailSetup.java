@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,8 @@ public class GmailSetup extends SocialNetworkSetup {
                 i.setData(Uri.parse(url));
                 view.getContext().startActivity(i);
             } catch (Exception e) {
-                String msg = "Error conectando al servidor. Intente de nuevo más tarde.";
+                Resources res = view.getResources();
+                String msg = res.getString(R.string.error_connecting_server);
                 Toast toast = Toast.makeText(view.getContext(), msg, Toast.LENGTH_LONG);
                 toast.show();
             }
