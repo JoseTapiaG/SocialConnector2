@@ -6,14 +6,13 @@ import android.os.AsyncTask;
 import java.util.concurrent.TimeUnit;
 
 import cl.josemanuel.socialconnector2.database.ContactDB;
-import cl.josemanuel.socialconnector2.fragments.contacts.AlbumContactsFragment;
 import cl.josemanuel.socialconnector2.fragments.contacts.ContactsFragment;
 
 public class ContactService extends AsyncTask<ContactsFragment, Void, Void>{
 
     ContactDB contactDB;
 
-    public ContactService(Context context) {
+    public ContactService(Context context, ContactsFragment ContactsFragment, String token) {
         contactDB = new ContactDB(context);
     }
 
