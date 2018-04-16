@@ -40,7 +40,7 @@ public class SkypeContactsFragment extends Fragment implements ContactsFragment{
         listView = (ListView) view.findViewById(R.id.contacts_scrollview);
 
         loadingContacts.showLoadingDialog("Cargando contactos");
-        (new ContactService(getActivity(), this, "")).execute(this);
+        (new ContactService(getActivity(), loadingContacts,this, "")).execute();
     }
 
     @Override

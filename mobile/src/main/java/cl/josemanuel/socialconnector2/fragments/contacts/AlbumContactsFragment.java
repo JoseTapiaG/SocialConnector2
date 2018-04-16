@@ -70,7 +70,7 @@ public class AlbumContactsFragment extends Fragment implements ContactsFragment,
 
     public void onTokenObtained(String token) {
         loadingContacts.showLoadingDialog("Cargando contactos");
-        (new ContactService(getActivity(), this, token)).execute(this);
+        (new ContactService(getActivity(), loadingContacts, this, token)).execute();
     }
 
     @Override
@@ -89,7 +89,7 @@ public class AlbumContactsFragment extends Fragment implements ContactsFragment,
 
     }
 
-    public void setToken(String token){
+    public void setToken(String token) {
         SharedPreferences settings = getActivity().getSharedPreferences(PREFS_SC, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(LOGIN_TOKEN, token);

@@ -25,18 +25,20 @@ public class PhotoService {
         File folder = new File(filepath);
 
         // create folder if does not exist
-        if (!folder.exists()){
+        if (!folder.exists()) {
             Boolean b = folder.mkdirs();
         }
     }
 
-    public Bitmap getBitmap(PhotoEntity photo){
-        File imgFile = new File(photo.getPath());
-        if(imgFile.exists()) {
-            Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            return bitmap;
-        }
-        else {
+    public Bitmap getBitmap(PhotoEntity photo) {
+        if (photo.getPath() != null) {
+            File imgFile = new File(photo.getPath());
+            if (imgFile.exists()) {
+                return BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            } else {
+                searchPhoto(photo.getUrl());
+            }
+        } else if (photo.getUrl() != null) {
             searchPhoto(photo.getUrl());
         }
         return null;
@@ -49,11 +51,11 @@ public class PhotoService {
     private void savePhoto() {
     }
 
-    public ArrayList<PhotoEntity> getPhotos(long idContacto){
+    public ArrayList<PhotoEntity> getPhotos(long idContacto) {
         return photoDB.getPhotos(idContacto);
     }
 
-    public ArrayList<PhotoEntity> getNewPhotos(){
+    public ArrayList<PhotoEntity> getNewPhotos() {
         return photoDB.getNewPhotos();
     }
 
