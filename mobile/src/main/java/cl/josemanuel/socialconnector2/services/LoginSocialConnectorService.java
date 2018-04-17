@@ -3,23 +3,11 @@ package cl.josemanuel.socialconnector2.services;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import cl.josemanuel.socialconnector2.dialogs.Loading;
-import cl.josemanuel.socialconnector2.dialogs.LoginSocialConnector;
-import cl.josemanuel.socialconnector2.fragments.ServiceFragment;
-import cl.josemanuel.socialconnector2.fragments.contacts.ContactsFragment;
+import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
 
 public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
 
@@ -27,15 +15,15 @@ public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
     private Loading loading;
     private String username;
     private String password;
-    private ServiceFragment serviceFragment;
+    private ContactServiceClient contactServiceClient;
     private String URL = "https://socialconnector.dcc.uchile.cl/api/login/";
 
-    public LoginSocialConnectorService(Context context, Loading loading, String username, String password, ServiceFragment serviceFragment) {
+    public LoginSocialConnectorService(Context context, Loading loading, String username, String password, ContactServiceClient contactServiceClient) {
         this.context = context;
         this.loading = loading;
         this.username = username;
         this.password = password;
-        this.serviceFragment = serviceFragment;
+        this.contactServiceClient = contactServiceClient;
     }
 
     @Override
@@ -43,7 +31,7 @@ public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         loading.hideLoadingDialog();
-        serviceFragment.onLoad("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImphdmllcmEudGFwaWEuZ0B1c2FjaC5jbCIsInVzZXJuYW1lIjoiamF2aWVyYS50YXBpYS5nQHVzYWNoLmNsIiwiZXhwIjoxNTIzODkwMDIyLCJ1c2VyX2lkIjoxM30.gN0uPsxpzJA56jKYkNVeZWCt9NLTSU0x5DwY54I01Ro");
+        contactServiceClient.onLoadContacts("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImphdmllcmEudGFwaWEuZ0B1c2FjaC5jbCIsInVzZXJuYW1lIjoiamF2aWVyYS50YXBpYS5nQHVzYWNoLmNsIiwiZXhwIjoxNTIzODkwMDIyLCJ1c2VyX2lkIjoxM30.gN0uPsxpzJA56jKYkNVeZWCt9NLTSU0x5DwY54I01Ro");
 
         /*// Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,

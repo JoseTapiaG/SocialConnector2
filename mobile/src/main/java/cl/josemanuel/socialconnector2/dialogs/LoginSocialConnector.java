@@ -2,15 +2,12 @@ package cl.josemanuel.socialconnector2.dialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.app.Service;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 
 import cl.josemanuel.socialconnector2.R;
-import cl.josemanuel.socialconnector2.fragments.ServiceFragment;
-import cl.josemanuel.socialconnector2.fragments.contacts.AlbumContactsFragment;
+import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
 import cl.josemanuel.socialconnector2.services.LoginSocialConnectorService;
 
 /**
@@ -26,7 +23,7 @@ public class LoginSocialConnector {
         this.activity = activity;
     }
 
-    public void showLoginDialog(final ServiceFragment serviceFragment) {
+    public void showLoginDialog(final ContactServiceClient contactServiceClient) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         LayoutInflater inflater = activity.getLayoutInflater();
 
@@ -37,7 +34,7 @@ public class LoginSocialConnector {
                         String username = ((EditText) ((AlertDialog) dialog).findViewById(R.id.username)).getText().toString();
                         String password = ((EditText) ((AlertDialog) dialog).findViewById(R.id.password)).getText().toString();
                         showLoadingDialog();
-                        (new LoginSocialConnectorService(activity, loading, username, password, serviceFragment)).execute();
+                        (new LoginSocialConnectorService(activity, loading, username, password, contactServiceClient)).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancelar_login_sc, new DialogInterface.OnClickListener() {

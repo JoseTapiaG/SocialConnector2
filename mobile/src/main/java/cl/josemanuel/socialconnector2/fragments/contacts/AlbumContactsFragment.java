@@ -15,14 +15,14 @@ import java.util.List;
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.dialogs.LoginSocialConnector;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
-import cl.josemanuel.socialconnector2.fragments.ServiceFragment;
+import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
 import cl.josemanuel.socialconnector2.services.ContactService;
 import cl.josemanuel.socialconnector2.dialogs.Loading;
 
 import static cl.josemanuel.socialconnector2.constants.Constants.LOGIN_TOKEN;
 import static cl.josemanuel.socialconnector2.constants.Constants.PREFS_SC;
 
-public class AlbumContactsFragment extends Fragment implements ContactsFragment, ServiceFragment<String> {
+public class AlbumContactsFragment extends Fragment implements ContactsFragment, ContactServiceClient<String> {
 
     Loading loadingContacts;
     LoginSocialConnector loginSocialConnector;
@@ -57,14 +57,14 @@ public class AlbumContactsFragment extends Fragment implements ContactsFragment,
     }
 
     @Override
-    public void onLoad(String response) {
+    public void onLoadContacts(String response) {
         //Se obtiene token
         setToken(response);
         onTokenObtained(response);
     }
 
     @Override
-    public void onError(String response) {
+    public void onErrorLoadContacts(String response) {
 
     }
 
