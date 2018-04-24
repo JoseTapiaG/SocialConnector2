@@ -3,11 +3,23 @@ package cl.josemanuel.socialconnector2.services;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 import cl.josemanuel.socialconnector2.dialogs.Loading;
+import cl.josemanuel.socialconnector2.entities.LoginSC;
 import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
+import cl.josemanuel.socialconnector2.services.clients.LoginServiceClient;
 
 public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
 
@@ -15,15 +27,15 @@ public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
     private Loading loading;
     private String username;
     private String password;
-    private ContactServiceClient contactServiceClient;
+    private LoginServiceClient loginServiceClient;
     private String URL = "https://socialconnector.dcc.uchile.cl/api/login/";
 
-    public LoginSocialConnectorService(Context context, Loading loading, String username, String password, ContactServiceClient contactServiceClient) {
+    public LoginSocialConnectorService(Context context, Loading loading, String username, String password, LoginServiceClient loginServiceClient) {
         this.context = context;
         this.loading = loading;
         this.username = username;
         this.password = password;
-        this.contactServiceClient = contactServiceClient;
+        this.loginServiceClient = loginServiceClient;
     }
 
     @Override
@@ -31,15 +43,15 @@ public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         loading.hideLoadingDialog();
-        contactServiceClient.onLoadContacts("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImphdmllcmEudGFwaWEuZ0B1c2FjaC5jbCIsInVzZXJuYW1lIjoiamF2aWVyYS50YXBpYS5nQHVzYWNoLmNsIiwiZXhwIjoxNTIzODkwMDIyLCJ1c2VyX2lkIjoxM30.gN0uPsxpzJA56jKYkNVeZWCt9NLTSU0x5DwY54I01Ro");
+//        contactServiceClient.onLoadContacts("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImphdmllcmEudGFwaWEuZ0B1c2FjaC5jbCIsInVzZXJuYW1lIjoiamF2aWVyYS50YXBpYS5nQHVzYWNoLmNsIiwiZXhwIjoxNTIzODkwMDIyLCJ1c2VyX2lkIjoxM30.gN0uPsxpzJA56jKYkNVeZWCt9NLTSU0x5DwY54I01Ro");
 
-        /*// Request a string response from the provided URL.
+        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         loading.hideLoadingDialog();
-                        System.out.println(response);
+                        loginServiceClient.onLoadLogin(getToken(response));
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -65,7 +77,12 @@ public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
         };
 
         // Add the request to the RequestQueue.
-        queue.add(stringRequest);*/
+        queue.add(stringRequest);
         return null;
+    }
+
+    private String getToken(String response){
+        Gson gson = new Gson();
+        return gson.fromJson(response, LoginSC.class).getToken();
     }
 }

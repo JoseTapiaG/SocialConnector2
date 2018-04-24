@@ -51,7 +51,7 @@ public class ContactService extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
-        contactsFragment.setContacts(processContacts("[\n" +
+        /*contactsFragment.setContacts(processContacts("[\n" +
                 "    {\n" +
                 "        \"relationship\": \"\",\n" +
                 "        \"rol\": \"\",\n" +
@@ -115,9 +115,9 @@ public class ContactService extends AsyncTask<Void, Void, Void> {
                 "        \"social_networks\": [1,2,3],\n" +
                 "        \"hash\": \"18477c280c2edae582c80185855a04ee95e5537ebff068b76353964c\"\n" +
                 "    }\n" +
-                "]"));
+                "]"));*/
 
-        /*// Request a string response from the provided URL.
+        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
@@ -139,13 +139,13 @@ public class ContactService extends AsyncTask<Void, Void, Void> {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Content-Type", "application/json; charset=UTF-8");
-                params.put("Authorization", "JWT" + token);
+                params.put("Authorization", "JWT " + token);
                 return params;
             }
         };
 
         // Add the request to the RequestQueue.
-        queue.add(stringRequest);*/
+        queue.add(stringRequest);
         return null;
     }
 

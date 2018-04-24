@@ -9,6 +9,7 @@ import android.widget.EditText;
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
 import cl.josemanuel.socialconnector2.services.LoginSocialConnectorService;
+import cl.josemanuel.socialconnector2.services.clients.LoginServiceClient;
 
 /**
  * Created by JoseManuel on 07-01-2018.
@@ -23,7 +24,7 @@ public class LoginSocialConnector {
         this.activity = activity;
     }
 
-    public void showLoginDialog(final ContactServiceClient contactServiceClient) {
+    public void showLoginDialog(final LoginServiceClient loginServiceClient) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         LayoutInflater inflater = activity.getLayoutInflater();
 
@@ -34,7 +35,7 @@ public class LoginSocialConnector {
                         String username = ((EditText) ((AlertDialog) dialog).findViewById(R.id.username)).getText().toString();
                         String password = ((EditText) ((AlertDialog) dialog).findViewById(R.id.password)).getText().toString();
                         showLoadingDialog();
-                        (new LoginSocialConnectorService(activity, loading, username, password, contactServiceClient)).execute();
+                        (new LoginSocialConnectorService(activity, loading, username, password, loginServiceClient)).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancelar_login_sc, new DialogInterface.OnClickListener() {
