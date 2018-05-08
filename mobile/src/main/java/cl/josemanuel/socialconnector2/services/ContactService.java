@@ -31,19 +31,20 @@ import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.ContactSC;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 import cl.josemanuel.socialconnector2.fragments.contacts.ContactsFragment;
+import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
 
 public class ContactService extends AsyncTask<Void, Void, Void> {
 
     private final String URL = "https://socialconnector.dcc.uchile.cl/api/myfamily/";
     private Context context;
     private Loading loading;
-    private ContactsFragment contactsFragment;
+    private ContactServiceClient contactServiceClient;
     private String token;
 
-    public ContactService(Context context, Loading loading, ContactsFragment ContactsFragment, String token) {
+    public ContactService(Context context, Loading loading, ContactServiceClient contactServiceClient, String token) {
         this.context = context;
         this.loading = loading;
-        contactsFragment = ContactsFragment;
+        this.contactServiceClient = contactServiceClient;
         this.token = token;
     }
 
@@ -51,71 +52,6 @@ public class ContactService extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
-        /*contactsFragment.setContacts(processContacts("[\n" +
-                "    {\n" +
-                "        \"relationship\": \"\",\n" +
-                "        \"rol\": \"\",\n" +
-                "        \"favorite_media\": \"\",\n" +
-                "        \"affective_closeness\": \"\",\n" +
-                "        \"physical_closeness\": \"\",\n" +
-                "        \"user\": \"jose.wt@gmail.com\",\n" +
-                "        \"avatar\": null,\n" +
-                "        \"first_name\": \"José\",\n" +
-                "        \"last_name\": \"Tapia\",\n" +
-                "        \"gender\": null,\n" +
-                "        \"birthday\": null,\n" +
-                "        \"age_group\": null,\n" +
-                "        \"created_date\": \"2018-01-09T13:40:28.096934Z\",\n" +
-                "        \"phone\": null,\n" +
-                "        \"phone2\": \"\",\n" +
-                "        \"address\": null,\n" +
-                "        \"is_active\": true,\n" +
-                "        \"social_networks\": [],\n" +
-                "        \"hash\": \"da5ef5bf749e8ac2b1f28205ebbcd3fc60c7afbe76c3861385e28a53\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"relationship\": \"\",\n" +
-                "        \"rol\": \"\",\n" +
-                "        \"favorite_media\": \"\",\n" +
-                "        \"affective_closeness\": \"\",\n" +
-                "        \"physical_closeness\": \"\",\n" +
-                "        \"user\": \"zuny.chincolco@gmail.com\",\n" +
-                "        \"avatar\": null,\n" +
-                "        \"first_name\": \"Zunilda\",\n" +
-                "        \"last_name\": \"Gonzalez\",\n" +
-                "        \"gender\": \"female\",\n" +
-                "        \"birthday\": \"01-01\",\n" +
-                "        \"age_group\": -1,\n" +
-                "        \"created_date\": \"2018-01-21T15:49:11.517134Z\",\n" +
-                "        \"phone\": \"+56988647736\",\n" +
-                "        \"phone2\": \"\",\n" +
-                "        \"address\": \"\",\n" +
-                "        \"is_active\": true,\n" +
-                "        \"social_networks\": [],\n" +
-                "        \"hash\": \"e9bb68cc7b195449682843288bb2de3de382ec6baccc24eb1551ad90\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"relationship\": \"\",\n" +
-                "        \"rol\": \"\",\n" +
-                "        \"favorite_media\": \"\",\n" +
-                "        \"affective_closeness\": \"\",\n" +
-                "        \"physical_closeness\": \"\",\n" +
-                "        \"user\": \"tapia.leo@gmail.com\",\n" +
-                "        \"avatar\": null,\n" +
-                "        \"first_name\": \"Victor\",\n" +
-                "        \"last_name\": \"Tapia\",\n" +
-                "        \"gender\": \"male\",\n" +
-                "        \"birthday\": \"01-01\",\n" +
-                "        \"age_group\": 3,\n" +
-                "        \"created_date\": \"2018-01-21T15:47:59.813453Z\",\n" +
-                "        \"phone\": \"+56941362228\",\n" +
-                "        \"phone2\": \"\",\n" +
-                "        \"address\": \"\",\n" +
-                "        \"is_active\": true,\n" +
-                "        \"social_networks\": [1,2,3],\n" +
-                "        \"hash\": \"18477c280c2edae582c80185855a04ee95e5537ebff068b76353964c\"\n" +
-                "    }\n" +
-                "]"));*/
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
@@ -123,7 +59,7 @@ public class ContactService extends AsyncTask<Void, Void, Void> {
                     @Override
                     public void onResponse(String response) {
                         loading.hideLoadingDialog();
-                        contactsFragment.setContacts(processContacts(response));
+                        contactServiceClient.onLoadContacts(processContacts(response));
                         System.out.println(response);
                     }
                 }, new Response.ErrorListener() {

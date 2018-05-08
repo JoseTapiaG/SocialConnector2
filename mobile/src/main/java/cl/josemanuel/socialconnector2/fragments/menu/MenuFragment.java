@@ -9,12 +9,10 @@ import android.view.ViewGroup;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import cl.josemanuel.socialconnector2.R;
 
-import static cl.josemanuel.socialconnector2.activities.MainActivity.messageService;
 import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
 
 
@@ -40,7 +38,7 @@ public class MenuFragment extends Fragment {
                     @Override
                     public void run() {
 //                        Check messages
-                        long l = messageService.countNewMessages();
+                        long l = 0;
                         if (l > 0) {
                             updateNewMessagesMenu(view, View.VISIBLE);
                         } else {

@@ -1,8 +1,12 @@
 package cl.josemanuel.socialconnector2.services.clients;
 
-public interface ContactServiceClient<T> {
+import java.util.List;
 
-    void onLoadContacts(T response);
-    void onErrorLoadContacts(T response);
+import cl.josemanuel.socialconnector2.entities.ContactEntity;
+
+public interface ContactServiceClient {
+
+    void onLoadContacts(List<ContactEntity> contacts);
+    void onErrorLoadContacts();
 
 }

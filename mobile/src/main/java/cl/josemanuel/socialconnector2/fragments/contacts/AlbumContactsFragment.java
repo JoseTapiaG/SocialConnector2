@@ -23,7 +23,7 @@ import cl.josemanuel.socialconnector2.services.clients.LoginServiceClient;
 import static cl.josemanuel.socialconnector2.constants.Constants.LOGIN_TOKEN;
 import static cl.josemanuel.socialconnector2.constants.Constants.PREFS_SC;
 
-public class AlbumContactsFragment extends Fragment implements ContactsFragment, ContactServiceClient<String>, LoginServiceClient {
+public class AlbumContactsFragment extends Fragment implements ContactsFragment, ContactServiceClient, LoginServiceClient {
 
     Loading loadingContacts;
     LoginSocialConnector loginSocialConnector;
@@ -58,14 +58,12 @@ public class AlbumContactsFragment extends Fragment implements ContactsFragment,
     }
 
     @Override
-    public void onLoadContacts(String response) {
-        //Se obtiene token
-        setToken(response);
-        onTokenObtained(response);
+    public void onLoadContacts(List<ContactEntity> contacts) {
+        setContacts(contacts);
     }
 
     @Override
-    public void onErrorLoadContacts(String response) {
+    public void onErrorLoadContacts() {
 
     }
 
@@ -104,6 +102,8 @@ public class AlbumContactsFragment extends Fragment implements ContactsFragment,
 
     @Override
     public void onLoadLogin(String token) {
+        //Se obtiene token
+        setToken(token);
         onTokenObtained(token);
     }
 

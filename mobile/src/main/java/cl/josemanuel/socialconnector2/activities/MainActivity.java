@@ -21,14 +21,12 @@ public class MainActivity extends CastScreenActivity {
 
     // Photo Service
     public static PhotoService photoService;
-    public static MessageService messageService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         photoService = new PhotoService(this);
-        messageService = new MessageService(this);
         initContentFragment();
         if(TEST){
             setTestEnv();

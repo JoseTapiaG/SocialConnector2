@@ -15,8 +15,9 @@ import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.services.ContactService;
 import cl.josemanuel.socialconnector2.dialogs.Loading;
+import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
 
-public class SkypeContactsFragment extends Fragment implements ContactsFragment{
+public class SkypeContactsFragment extends Fragment implements ContactsFragment, ContactServiceClient{
 
     Loading loadingContacts;
     ListView listView;
@@ -55,5 +56,15 @@ public class SkypeContactsFragment extends Fragment implements ContactsFragment{
                 loadingContacts.hideLoadingDialog();
             }
         });
+    }
+
+    @Override
+    public void onLoadContacts(List<ContactEntity> contacts) {
+        setContacts(contacts);
+    }
+
+    @Override
+    public void onErrorLoadContacts() {
+
     }
 }
