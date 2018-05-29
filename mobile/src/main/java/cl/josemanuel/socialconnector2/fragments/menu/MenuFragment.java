@@ -79,5 +79,6 @@ public class MenuFragment extends Fragment {
         view.findViewById(R.id.sendMessageButton).setOnClickListener(new SendMessageMenuHandler(this));
         view.findViewById(R.id.newPhotosButton).setOnClickListener(new NewPhotosMenuHandler(this));
         view.findViewById(R.id.newMessagesButton).setOnClickListener(new NewMessagesMenuHandler(this));
+        view.findViewById(R.id.settingsButton).setOnClickListener(new SettingsMenuHandler(this));
     }
 }

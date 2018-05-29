@@ -4,7 +4,7 @@
     <!--Menu-->
     <dimen name="menu_height">140dp</dimen>
     <dimen name="menu_text_size">17sp</dimen>
-
+    <dimen name="text_margin">10dp</dimen>
 
     <!--Contacts-->
     <dimen name="contact_letter">30sp</dimen>

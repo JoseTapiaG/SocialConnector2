@@ -13,7 +13,7 @@ public class SocialConnectorDBHelper extends SQLiteOpenHelper {
     private static final String INTEGER_TYPE = " INTEGER";
     private static final String BOOLEAN_TYPE = " BOOLEAN";
     private static final String DATABASE_NAME = " SocialConnector.db";
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 13;
     private static final String COMMA_SEP = ", ";
 
     private static final String SQL_CREATE_PHOTO =
@@ -43,6 +43,12 @@ public class SocialConnectorDBHelper extends SQLiteOpenHelper {
                     Message.CONTACT + INTEGER_TYPE + COMMA_SEP +
                     Message.PHOTO + INTEGER_TYPE + " )";
 
+    private static final String SQL_CREATE_SECURITY =
+            "CREATE TABLE " + SecurityPass.TABLE_NAME + " (" +
+                    SecurityPass._ID + " INTEGER PRIMARY KEY, " +
+                    SecurityPass.SOCIAL + TEXT_TYPE + COMMA_SEP +
+                    SecurityPass.PASS + TEXT_TYPE + " )";
+
     private static final String SQL_DELETE_CONTACTS =
             "DROP TABLE IF EXISTS " + Contact.TABLE_NAME;
 
@@ -60,11 +66,13 @@ public class SocialConnectorDBHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_CONTACT);
         db.execSQL(SQL_CREATE_MESSAGE);
         db.execSQL(SQL_CREATE_PHOTO);
+        db.execSQL(SQL_CREATE_SECURITY);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_CONTACTS);
         db.execSQL(SQL_DELETE_MESSAGES);
         db.execSQL(SQL_DELETE_PHOTOS);
+        db.execSQL(SQL_CREATE_SECURITY);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {

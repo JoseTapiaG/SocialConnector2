@@ -38,6 +38,12 @@ public final class SocialConnectorContract {
                         TABLE_NAME + "." + SEEN + " as " + TABLE_NAME + "_" + SEEN;
     }
 
+    public static class SecurityPass implements BaseColumns {
+        public static final String TABLE_NAME = "security";
+        public static final String SOCIAL = "social";
+        public static final String PASS = "pass";
+    }
+
     public static class Photo implements BaseColumns {
         public static final String TABLE_NAME = "photo";
         public static final String URL = "url";

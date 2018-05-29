@@ -39,6 +39,10 @@
     <color name="background_new_messages">#DE5B49</color>
     <color name="background_new_messages_active">#DE5B49</color>
 
+    <!--Menu configuraciones-->
+    <color name="background_settings">#9187ae</color>
+    <color name="background_settings_active">#756a99</color>
+
     <!--Otros-->
     <color name="background_no_content">#3d9c8a</color>
 

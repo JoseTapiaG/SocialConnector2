@@ -188,4 +188,33 @@
                 android:text="12"/>
         </LinearLayout>
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/settingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/menu_settings"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp"
+            android:src="@drawable/ic_settings" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/menu_text_size"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:text="@string/menu_settings"
+            android:textColor="@color/menu_text_color" />
+
+    </RelativeLayout>
 </LinearLayout>
