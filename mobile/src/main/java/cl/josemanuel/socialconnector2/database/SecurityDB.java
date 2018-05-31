@@ -60,7 +60,7 @@ public class SecurityDB {
         int updated = db.update(SecurityPass.TABLE_NAME, updateMessageValues, where, whereArgs);
         db.close();
 
-        if (updated <= 1) return updated;
+        if (updated < 1) return updated;
 
         int deleted = this.deleteSocial(social);
         if (updated == deleted) return 0;
