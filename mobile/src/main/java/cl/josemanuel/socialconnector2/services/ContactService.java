@@ -2,6 +2,7 @@ package cl.josemanuel.socialconnector2.services;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.text.Html;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -15,6 +16,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -59,8 +61,7 @@ public class ContactService extends AsyncTask<Void, Void, Void> {
                     @Override
                     public void onResponse(String response) {
                         loading.hideLoadingDialog();
-                        contactServiceClient.onLoadContacts(processContacts(response));
-                        System.out.println(response);
+                        contactServiceClient.onLoadContacts(processContacts(fixEncodingUnicode(response)));
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -83,6 +84,19 @@ public class ContactService extends AsyncTask<Void, Void, Void> {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
         return null;
+    }
+
+    private String fixEncodingUnicode(String response) {
+        String str = "";
+        try {
+            str = new String(response.getBytes("ISO-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+
+            e.printStackTrace();
+        }
+
+        String decodedStr = Html.fromHtml(str).toString();
+        return  decodedStr;
     }
 
     private List<ContactEntity> processContacts(String response) {
