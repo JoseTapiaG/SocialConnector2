@@ -90,7 +90,7 @@ public class AlbumContactsAdapter extends ArrayAdapter<ContactEntity> {
     }
 
     private Bitmap drawableToBitmap (Drawable drawable) {
-        Bitmap bitmap = null;
+        Bitmap bitmap;
 
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;

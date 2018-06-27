@@ -21,7 +21,7 @@ public class ContactSC {
     private String phone2;
     private String address;
     private boolean isActive;
-    private ArrayList<String> social_networks;
+    private ArrayList<SocialNetworwSC> social_networks;
     private String hash;
 
     public String getRelationship() {
@@ -160,11 +160,11 @@ public class ContactSC {
         isActive = active;
     }
 
-    public ArrayList<String> getSocial_networks() {
+    public ArrayList<SocialNetworwSC> getSocial_networks() {
         return social_networks;
     }
 
-    public void setSocial_networks(ArrayList<String> social_networks) {
+    public void setSocial_networks(ArrayList<SocialNetworwSC> social_networks) {
         this.social_networks = social_networks;
     }
 

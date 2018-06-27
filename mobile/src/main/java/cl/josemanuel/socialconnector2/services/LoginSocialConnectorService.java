@@ -63,8 +63,8 @@ public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
             @Override
             public byte[] getBody() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
-                params.put("username", "javiera.tapia.g@usach.cl");
-                params.put("password", "pass1234");
+                params.put("username", "jose.wt@gmail.com");
+                params.put("password", "social123456");
 //                params.put("username", LoginSocialConnectorService.this.username);
 //                params.put("password", LoginSocialConnectorService.this.password);
                 return new JSONObject(params).toString().getBytes();

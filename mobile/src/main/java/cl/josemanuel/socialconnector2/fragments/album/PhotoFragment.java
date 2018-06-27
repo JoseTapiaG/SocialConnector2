@@ -1,6 +1,7 @@
 package cl.josemanuel.socialconnector2.fragments.album;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.method.ScrollingMovementMethod;
@@ -17,6 +18,8 @@ import cl.josemanuel.socialconnector2.constants.Constants;
 import cl.josemanuel.socialconnector2.dummy.PhotoDummy;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
+import cl.josemanuel.socialconnector2.fragments.error.ClickError;
+import cl.josemanuel.socialconnector2.fragments.error.ErrorFragment;
 
 import static cl.josemanuel.socialconnector2.activities.MainActivity.photoService;
 
@@ -94,5 +97,20 @@ public abstract class PhotoFragment extends Fragment {
                 changePhoto(--index);
             }
         });
+    }
+
+    protected void onError(String message, int background_color, ClickError clickError){
+        FragmentTransaction transaction = this.getFragmentManager().beginTransaction();
+        ErrorFragment errorFragment = new ErrorFragment();
+
+        Bundle args = new Bundle();
+        args.putString("message", message);
+        args.putSerializable("clickError", clickError);
+        args.putInt("background_color", background_color);
+        errorFragment.setArguments(args);
+
+        transaction.replace(R.id.content_fragment, errorFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

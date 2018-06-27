@@ -65,6 +65,7 @@ public class MessageService extends AsyncTask<Void, Void, Void> {
                 //Error
                 loading.hideLoadingDialog();
                 error.printStackTrace();
+                messageServiceClient.onErrorLoadMessages();
             }
         }) {
             @Override
