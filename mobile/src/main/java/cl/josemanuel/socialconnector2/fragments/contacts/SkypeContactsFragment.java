@@ -1,6 +1,7 @@
 package cl.josemanuel.socialconnector2.fragments.contacts;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -12,20 +13,27 @@ import android.widget.ListView;
 import java.util.List;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.dialogs.LoginSocialConnector;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.services.ContactService;
 import cl.josemanuel.socialconnector2.dialogs.Loading;
 import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
+import cl.josemanuel.socialconnector2.services.clients.LoginServiceClient;
 
-public class SkypeContactsFragment extends Fragment implements ContactsFragment, ContactServiceClient{
+import static cl.josemanuel.socialconnector2.constants.Constants.LOGIN_TOKEN;
+import static cl.josemanuel.socialconnector2.constants.Constants.PREFS_SC;
+
+public class SkypeContactsFragment extends Fragment implements ContactsFragment, ContactServiceClient, LoginServiceClient {
 
     Loading loadingContacts;
+    LoginSocialConnector loginSocialConnector;
     ListView listView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadingContacts = new Loading(getActivity());
+        loginSocialConnector = new LoginSocialConnector(getActivity());
     }
 
     @Override
@@ -37,11 +45,33 @@ public class SkypeContactsFragment extends Fragment implements ContactsFragment,
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.background_phone_call_active));
+        view.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.background_album_active));
         listView = (ListView) view.findViewById(R.id.contacts_scrollview);
 
+        String token = getToken();
+
+        if ("".equals(getToken()))
+            loginSocialConnector.showLoginDialog(this);
+        else {
+            onTokenObtained(token);
+        }
+    }
+
+    public void onTokenObtained(String token) {
         loadingContacts.showLoadingDialog("Cargando contactos");
-        (new ContactService(getActivity(), loadingContacts,this, "")).execute();
+        (new ContactService(getActivity(), loadingContacts, this, token)).execute();
+    }
+
+    public void setToken(String token) {
+        SharedPreferences settings = getActivity().getSharedPreferences(PREFS_SC, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(LOGIN_TOKEN, token);
+        editor.apply();
+    }
+
+    public String getToken() {
+        SharedPreferences settings = getActivity().getSharedPreferences(PREFS_SC, 0);
+        return settings.getString(LOGIN_TOKEN, "");
     }
 
     @Override
@@ -65,6 +95,18 @@ public class SkypeContactsFragment extends Fragment implements ContactsFragment,
 
     @Override
     public void onErrorLoadContacts() {
+
+    }
+
+    @Override
+    public void onLoadLogin(String token) {
+        //Se obtiene token
+        setToken(token);
+        onTokenObtained(token);
+    }
+
+    @Override
+    public void onErrorLogin(String response) {
 
     }
 }

@@ -32,6 +32,7 @@ import cl.josemanuel.socialconnector2.dialogs.Loading;
 import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.ContactSC;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
+import cl.josemanuel.socialconnector2.entities.SocialNetworwSC;
 import cl.josemanuel.socialconnector2.fragments.contacts.ContactsFragment;
 import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
 
@@ -112,6 +113,11 @@ public class ContactService extends AsyncTask<Void, Void, Void> {
                     contactSC.getUser(),
                     "");
             contact.setAvatar(new PhotoEntity(contactSC.getAvatar(), null, new Date()));
+            for(SocialNetworwSC sc : contactSC.getSocial_networks()){
+                if(sc.getName().equals("Skype")){
+                    contact.setSkype(sc.getHandle());
+                }
+            }
             contacts.add(contact);
         }
 

@@ -33,11 +33,13 @@
 
     <!--Test-->
     <string name="contact_name_test1">José Manuel</string>
-    <string name="contenido_photo_test1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus nibh nec cursus varius. Suspendisse finibus, tortor vel tempus vulputate, elit massa tincidunt magna, at maximus leo metus sed massa. Nam sed efficitur dui. Maecenas vel odio non nisi gravida luctus. Fusce ac ex venenatis, sollicitudin ante sed, vehicula sapien...
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce cursus nibh nec cursus varius. Suspendisse finibus, tortor vel tempus vulputate, elit massa tincidunt magna, at maximus leo metus sed massa. Nam sed efficitur dui. Maecenas vel odio non nisi gravida luctus. Fusce ac ex venenatis, sollicitudin ante sed, vehicula sapien...</string>
+    <string name="contenido_photo_test1">Abuelita!!! se ve muy bien en esta foto.</string>
 
     <string name="contact_name_test2">Victor Leonardo</string>
-    <string name="contenido_photo_test2">Duis congue leo feugiat, maximus enim eu, gravida dolor. Nunc fringilla neque ut pulvinar ultricies. Sed at eros turpis. Ut eget metus non ante tincidunt aliquet nec vitae nisi. Donec blandit leo sit amet enim molestie, quis egestas mauris vestibulum. Etiam malesuada, nisl id laoreet lacinia, augue orci iaculis neque, in condimentum...</string>
+    <string name="contenido_photo_test2">Hola abuelita, mire la foto del cachupin ,ahora escucha mi musica jajkajka</string>
+
+    <string name="contact_name_test3">Victor Leonardo</string>
+    <string name="contenido_photo_test3">Una foto de mis vacaciones :D!!!</string>
 
     <!--Settings-->
     <string name="settings_rrss">Configurar Redes Sociales</string>

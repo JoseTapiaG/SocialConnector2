@@ -80,7 +80,7 @@ public abstract class PhotoFragment extends Fragment {
         ((ImageView) getView().findViewById(R.id.photo)).setImageBitmap(photoService.getBitmap(currentPhoto));
         updateView(getView());
 
-        photoService.updatePhotoSeenState(currentPhoto.getId());
+        //photoService.updatePhotoSeenState(currentPhoto.getId());
     }
 
     private void setListeners(View view) {

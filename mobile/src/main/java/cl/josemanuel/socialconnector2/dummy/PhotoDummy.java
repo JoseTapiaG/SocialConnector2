@@ -41,7 +41,7 @@ public class PhotoDummy {
             photoDB.insertPhoto(photo2, 1);
 
             PhotoEntity photo3 = new PhotoEntity("", createImage("tortuga.jpg"), new Date());
-            MessageEntity message3 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test1), new Date(), false);
+            MessageEntity message3 = new MessageEntity(activity.getResources().getString(R.string.contenido_photo_test3), new Date(), false);
             photo3.setMessage(message3);
             photoDB.insertPhoto(photo3, 2);
         }

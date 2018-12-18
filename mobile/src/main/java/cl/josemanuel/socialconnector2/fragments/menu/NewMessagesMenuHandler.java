@@ -16,7 +16,7 @@ public class NewMessagesMenuHandler extends MenuHandler {
 
     public void onClick(View v) {
         super.onClick(v);
-        changeActivity(new NewMessagesFragment());
+        //changeActivity(new NewMessagesFragment());
     }
 
     @Override

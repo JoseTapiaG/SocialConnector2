@@ -71,7 +71,7 @@ public class MessageService extends AsyncTask<Void, Void, Void> {
             @Override
             public byte[] getBody() {
                 HashMap<String, String> params = new HashMap<>();
-                params.put("user", "farodrig");
+                params.put("user", "abuelo");
                 return new JSONObject(params).toString().getBytes();
             }
 

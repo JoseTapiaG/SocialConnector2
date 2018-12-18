@@ -7,19 +7,29 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.dialogs.Loading;
 import cl.josemanuel.socialconnector2.services.CredentialsService;
+import cl.josemanuel.socialconnector2.services.TelegramService;
+import cl.josemanuel.socialconnector2.services.clients.TelegramCodeClient;
 
 /**
  * Created by Vincent on 18-03-2018.
  */
 
-public class TelegramSetup extends SocialNetworkSetup {
+public class TelegramSetup extends SocialNetworkSetup implements TelegramCodeClient {
 
-    public TelegramSetup(String name){
+    Loading loading;
+    Activity activity;
+    String code;
+
+    public TelegramSetup(String name, Activity activity){
         super("telegram", name);
+
+        this.activity = activity;
+        loading = new Loading(activity);
+
         setRequireText(false);
         setListener((View view, String pass) -> {
             TelegramSetup setup = this;
@@ -42,10 +52,10 @@ public class TelegramSetup extends SocialNetworkSetup {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 final EditText code = (EditText) dialogView.findViewById(R.id.settings_code);
-                                Toast toast = Toast.makeText(view.getContext(), code.getText(), Toast.LENGTH_SHORT);
-                                toast.show();
-                                setup.getListener().apply(view, code.getText().toString());
-                                setup.setConnected(true);
+                                TelegramSetup.this.code = code.getText().toString();
+
+                                loading.showLoadingDialog("Cargando codigo");
+                                (new TelegramService(activity, code.getText().toString(), TelegramSetup.this, 1)).execute();
                             }
                         })
                         .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -59,5 +69,21 @@ public class TelegramSetup extends SocialNetworkSetup {
             }
             return null;
         });
+    }
+
+    @Override
+    public void onTelegramCodeSended() {
+        this.loading.hideLoadingDialog();
+        this.setConnected(true);
+    }
+
+    @Override
+    public void onErrorSendTelegramCode() {
+        this.loading.hideLoadingDialog();
+    }
+
+    @Override
+    public void onTelegramCheckSended() {
+        (new TelegramService(activity, code, TelegramSetup.this, 2)).execute();
     }
 }

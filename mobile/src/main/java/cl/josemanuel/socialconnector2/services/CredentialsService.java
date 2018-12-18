@@ -1,5 +1,7 @@
 package cl.josemanuel.socialconnector2.services;
 
+import android.app.Activity;
+
 import java.util.ArrayList;
 
 import cl.josemanuel.socialconnector2.settings.socialnetwork.GmailSetup;
@@ -14,9 +16,9 @@ import cl.josemanuel.socialconnector2.settings.socialnetwork.TelegramSetup;
 public class CredentialsService {
 
 
-    public static ArrayList<SocialNetworkSetup> getSocialNetworks() {
+    public static ArrayList<SocialNetworkSetup> getSocialNetworks(Activity activity) {
         ArrayList<SocialNetworkSetup> socialNetworks = new ArrayList<SocialNetworkSetup>();
-        socialNetworks.add(new TelegramSetup("Telegram").setConnected(true));
+        socialNetworks.add(new TelegramSetup("Telegram", activity));
         socialNetworks.add(new SkypeSetup("Skype"));
         socialNetworks.add(new GmailSetup("Gmail"));
         return socialNetworks;
