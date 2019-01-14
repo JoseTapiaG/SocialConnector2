@@ -95,7 +95,7 @@ public class MessageService extends AsyncTask<Void, Void, Void> {
         ArrayList<PhotoEntity> messages = new ArrayList<>();
         for (MessageSC messageSC : messagesCS){
             PhotoEntity photo = new PhotoEntity(
-                    "",
+                    messageSC.getFile(),
                     "",
                     new Date()
             );

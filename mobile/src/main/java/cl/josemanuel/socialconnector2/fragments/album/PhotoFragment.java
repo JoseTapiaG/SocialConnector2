@@ -2,15 +2,20 @@ package cl.josemanuel.socialconnector2.fragments.album;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import cl.josemanuel.socialconnector2.R;
@@ -81,6 +86,12 @@ public abstract class PhotoFragment extends Fragment {
         updateView(getView());
 
         //photoService.updatePhotoSeenState(currentPhoto.getId());
+        // show The Image in a ImageView
+        if(currentPhoto.getUrl() != null){
+            new DownloadImageTask((ImageView) getView().findViewById(R.id.photo))
+                    .execute("https://guarded-retreat-96811.herokuapp.com" + currentPhoto.getUrl());
+        }
+
     }
 
     private void setListeners(View view) {
@@ -112,5 +123,30 @@ public abstract class PhotoFragment extends Fragment {
         transaction.replace(R.id.content_fragment, errorFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
     }
 }

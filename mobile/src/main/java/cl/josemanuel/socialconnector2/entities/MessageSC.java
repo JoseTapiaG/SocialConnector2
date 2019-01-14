@@ -11,6 +11,16 @@ public class MessageSC {
     long toUser;
     String through;
 
+    public String getFile() {
+        return file;
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    String file;
+
     public long getId() {
         return id;
     }

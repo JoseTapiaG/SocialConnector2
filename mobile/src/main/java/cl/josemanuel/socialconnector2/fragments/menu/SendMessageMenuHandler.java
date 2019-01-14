@@ -5,7 +5,6 @@ import android.view.View;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.fragments.SendMessageFragment;
-import cl.josemanuel.socialconnector2.fragments.album.AlbumFragment2;
 
 public class SendMessageMenuHandler extends MenuHandler {
 
