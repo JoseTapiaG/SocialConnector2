@@ -12,17 +12,28 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cl.josemanuel.socialconnector2.R;
+import cl.josemanuel.socialconnector2.dialogs.Loading;
+import cl.josemanuel.socialconnector2.entities.PhotoEntity;
+import cl.josemanuel.socialconnector2.services.ContactService;
+import cl.josemanuel.socialconnector2.services.MessageService;
+import cl.josemanuel.socialconnector2.services.SendMessageService;
+import cl.josemanuel.socialconnector2.services.clients.MessageServiceClient;
+import cl.josemanuel.socialconnector2.services.clients.SendMessageServiceClient;
 
-public class SendMessageFragment extends Fragment {
+public class SendMessageFragment extends Fragment implements SendMessageServiceClient {
 
     private static final int REQUEST_CODE = 1;
+    private Loading loading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        loading = new Loading(getActivity());
+
         return inflater.inflate(R.layout.fragment_send_message, container, false);
     }
 
@@ -32,7 +43,9 @@ public class SendMessageFragment extends Fragment {
         view.findViewById(R.id.voice_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startVoiceRecognitionActivity();
+                loading.showLoadingDialog("Enviando mensaje");
+                (new SendMessageService(getActivity(), loading, "test", SendMessageFragment.this)).execute();
+                //startVoiceRecognitionActivity();
             }
         });
     }
@@ -61,5 +74,15 @@ public class SendMessageFragment extends Fragment {
 
     private void updateView(View view, String message) {
         ((TextView) view.findViewById(R.id.send_message_text)).setText(message);
+    }
+
+    @Override
+    public void onMessageSent() {
+
+    }
+
+    @Override
+    public void onErrorSendMessage() {
+
     }
 }
