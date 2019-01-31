@@ -5,6 +5,7 @@ import android.view.View;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.fragments.SendMessageFragment;
+import cl.josemanuel.socialconnector2.fragments.contacts.SendMessageContactsFragment;
 
 public class SendMessageMenuHandler extends MenuHandler {
 
@@ -15,7 +16,7 @@ public class SendMessageMenuHandler extends MenuHandler {
 
     public void onClick(View v) {
         super.onClick(v);
-        changeActivity(new SendMessageFragment());
+        changeActivity(new SendMessageContactsFragment());
     }
 
     @Override

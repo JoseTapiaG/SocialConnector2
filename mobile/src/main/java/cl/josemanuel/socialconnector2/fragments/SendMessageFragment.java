@@ -16,6 +16,7 @@ import java.util.List;
 
 import cl.josemanuel.socialconnector2.R;
 import cl.josemanuel.socialconnector2.dialogs.Loading;
+import cl.josemanuel.socialconnector2.entities.ContactEntity;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 import cl.josemanuel.socialconnector2.services.ContactService;
 import cl.josemanuel.socialconnector2.services.MessageService;
@@ -27,6 +28,14 @@ public class SendMessageFragment extends Fragment implements SendMessageServiceC
 
     private static final int REQUEST_CODE = 1;
     private Loading loading;
+    ContactEntity contact;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        contact = (ContactEntity) getArguments().getSerializable("contact");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

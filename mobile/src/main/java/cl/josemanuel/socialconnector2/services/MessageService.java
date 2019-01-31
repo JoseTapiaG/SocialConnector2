@@ -31,11 +31,13 @@ import cl.josemanuel.socialconnector2.entities.MessageEntity;
 import cl.josemanuel.socialconnector2.entities.MessageSC;
 import cl.josemanuel.socialconnector2.entities.PhotoEntity;
 import cl.josemanuel.socialconnector2.services.clients.ContactServiceClient;
+import cl.josemanuel.socialconnector2.services.clients.LoginServiceClient;
 import cl.josemanuel.socialconnector2.services.clients.MessageServiceClient;
+import cl.josemanuel.socialconnector2.services.clients.TokenServiceClient;
 
-public class MessageService extends AsyncTask<Void, Void, Void> {
+public class MessageService extends AsyncTask<Void, Void, Void> implements TokenServiceClient{
 
-    private final String URL = "https://guarded-retreat-96811.herokuapp.com/family/getMessages/";
+    private final String URL = "https://socialtranslator.dcc.uchile.cl/community/getMessages/";
     private Context context;
     private Loading loading;
     private MessageServiceClient messageServiceClient;
@@ -48,7 +50,16 @@ public class MessageService extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
-        // Instantiate the RequestQueue.
+        if(false){
+            getMessages("");
+        } else {
+            (new TokenService(context, this)).execute();
+        }
+
+        return null;
+    }
+
+    private void getMessages(String token) {
         RequestQueue queue = Volley.newRequestQueue(context);
 
         // Request a string response from the provided URL.
@@ -71,19 +82,21 @@ public class MessageService extends AsyncTask<Void, Void, Void> {
             @Override
             public byte[] getBody() {
                 HashMap<String, String> params = new HashMap<>();
-                params.put("user", "abuelo");
+                params.put("user", "jose.wt@gmail.com");
                 return new JSONObject(params).toString().getBytes();
             }
 
             @Override
-            public String getBodyContentType() {
-                return "application/json";
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/json; charset=UTF-8");
+                params.put("Authorization", "JWT " + token);
+                return params;
             }
         };
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-        return null;
     }
 
     private List<PhotoEntity> proccessMessages(String response) {
@@ -111,5 +124,15 @@ public class MessageService extends AsyncTask<Void, Void, Void> {
         }
 
         return messages;
+    }
+
+    @Override
+    public void onTokenReceived(String token) {
+        getMessages(token);
+    }
+
+    @Override
+    public void onErrorToken() {
+        loading.hideLoadingDialog();
     }
 }

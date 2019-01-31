@@ -25,18 +25,20 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.Map;
 
 import cl.josemanuel.socialconnector2.dialogs.Loading;
 import cl.josemanuel.socialconnector2.entities.LoginSC;
 import cl.josemanuel.socialconnector2.services.clients.LoginServiceClient;
 import cl.josemanuel.socialconnector2.services.clients.SendMessageServiceClient;
+import cl.josemanuel.socialconnector2.services.clients.TokenServiceClient;
 
-public class SendMessageService extends AsyncTask<Void, Void, Void> {
+public class SendMessageService extends AsyncTask<Void, Void, Void> implements TokenServiceClient {
 
     private Context context;
     private Loading loading;
     private SendMessageServiceClient sendMessageServiceClient;
-    private String URL = "https://guarded-retreat-96811.herokuapp.com/family/sendMessage/";
+    private String URL = "https://socialtranslator.dcc.uchile.cl/community/sendMessage/";
     private String message;
 
     public SendMessageService(Context context, Loading loading, String message, SendMessageServiceClient sendMessageServiceClient) {
@@ -48,12 +50,22 @@ public class SendMessageService extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
+        if(false){
+            sendMessage("");
+        } else {
+            (new TokenService(context, this)).execute();
+        }
+
+        return null;
+    }
+
+    private void sendMessage(String token) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         loading.hideLoadingDialog();
 
         // Request a string response from the provided URL.
-        Request<String> stringRequest = new MultiPartRequest(Request.Method.POST, URL, new Response.ErrorListener() {
+        Request<String> stringRequest = new MultiPartRequest(token, Request.Method.POST, URL, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //Error
@@ -70,7 +82,16 @@ public class SendMessageService extends AsyncTask<Void, Void, Void> {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-        return null;
+    }
+
+    @Override
+    public void onTokenReceived(String token) {
+        sendMessage(token);
+    }
+
+    @Override
+    public void onErrorToken() {
+        loading.hideLoadingDialog();
     }
 
     private class MultiPartRequest extends Request<String> {
@@ -83,10 +104,12 @@ public class SendMessageService extends AsyncTask<Void, Void, Void> {
         private final Response.Listener<String> mListener;
         private final File mFilePart;
         private final String mStringPart;
+        private String token;
 
 
-        public MultiPartRequest(int method, String url, Response.ErrorListener listener, Response.Listener<String> mListener, File mFilePart, String mStringPart) {
+        public MultiPartRequest(String token, int method, String url, Response.ErrorListener listener, Response.Listener<String> mListener, File mFilePart, String mStringPart) {
             super(method, url, listener);
+            this.token = token;
             this.mListener = mListener;
             this.mFilePart = mFilePart;
             this.mStringPart = mStringPart;
@@ -97,8 +120,8 @@ public class SendMessageService extends AsyncTask<Void, Void, Void> {
         {
             try
             {
-                entity.addPart("fromUser", new StringBody("abuelo"));
-                entity.addPart("toUser",new StringBody("Usuario1"));
+                entity.addPart("fromUser", new StringBody("jose.wt@gmail.com"));
+                entity.addPart("toUser",new StringBody("zuny.chincolco@gmail.com"));
                 entity.addPart("content", new StringBody("Test 123123"));
             }
             catch (Exception e)
@@ -108,13 +131,20 @@ public class SendMessageService extends AsyncTask<Void, Void, Void> {
         }
 
         @Override
+        public Map<String, String> getHeaders() {
+            Map<String, String> params = new HashMap<>();
+            params.put("Authorization", "JWT " + token);
+            return params;
+        }
+
+        @Override
         public String getBodyContentType()
         {
             return entity.getContentType().getValue();
         }
 
         @Override
-        public byte[] getBody() throws AuthFailureError
+        public byte[] getBody()
         {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             try

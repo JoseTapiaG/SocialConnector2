@@ -65,6 +65,8 @@ public class LoginSocialConnectorService extends AsyncTask<Void, Void, Void> {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("username", "jose.wt@gmail.com");
                 params.put("password", "social123456");
+//                params.put("username", "abuelo");
+//                params.put("password", "admin123");
 //                params.put("username", LoginSocialConnectorService.this.username);
 //                params.put("password", LoginSocialConnectorService.this.password);
                 return new JSONObject(params).toString().getBytes();
