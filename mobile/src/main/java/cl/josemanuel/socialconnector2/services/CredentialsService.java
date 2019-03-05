@@ -20,7 +20,7 @@ public class CredentialsService {
         ArrayList<SocialNetworkSetup> socialNetworks = new ArrayList<SocialNetworkSetup>();
         socialNetworks.add(new TelegramSetup("Telegram", activity));
         socialNetworks.add(new SkypeSetup("Skype"));
-        socialNetworks.add(new GmailSetup("Gmail"));
+        socialNetworks.add(new GmailSetup("Gmail", activity));
         return socialNetworks;
     }
 

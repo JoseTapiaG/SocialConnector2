@@ -57,5 +57,5 @@ public class SocialNetworkSetup {
 
 @FunctionalInterface
 interface Function<One, Two, Three> {
-    public Three apply(One one, Two two);
+    Three apply(One one, Two two);
 }

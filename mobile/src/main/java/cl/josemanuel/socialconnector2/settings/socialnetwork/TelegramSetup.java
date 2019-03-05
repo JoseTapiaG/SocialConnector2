@@ -23,6 +23,8 @@ public class TelegramSetup extends SocialNetworkSetup implements TelegramCodeCli
     Loading loading;
     Activity activity;
     String code;
+    View view;
+    TelegramService telegramService;
 
     public TelegramSetup(String name, Activity activity){
         super("telegram", name);
@@ -33,42 +35,47 @@ public class TelegramSetup extends SocialNetworkSetup implements TelegramCodeCli
         setRequireText(false);
         setListener((View view, String pass) -> {
             TelegramSetup setup = this;
+            this.view = view;
             try {
                 String result = CredentialsService.configure(this.getId(), pass);
                 this.setConnected(true);
             } catch (Exception e) {
-                LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-                final View dialogView = inflater.inflate(R.layout.settings_code_dialog, null);
-                        // Inflate and set the layout for the dialog
-                // Pass null as the parent view because its going in the dialog layout
-                Resources res = view.getResources();
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setView(dialogView);
-
-                builder
-                        .setTitle(R.string.telegram_access_code)
-                        .setMessage(R.string.telegram_new_code)
-                        .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                final EditText code = (EditText) dialogView.findViewById(R.id.settings_code);
-                                TelegramSetup.this.code = code.getText().toString();
-
-                                loading.showLoadingDialog("Cargando codigo");
-                                (new TelegramService(activity, code.getText().toString(), TelegramSetup.this, 1)).execute();
-                            }
-                        })
-                        .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                loading.showLoadingDialog("Verificando cuenta de Telegram");
+                telegramService = new TelegramService(activity, code, TelegramSetup.this, 1);
+                telegramService.execute();
             }
             return null;
         });
+    }
+
+    private void showDialogSendCode(Activity activity, View view) {
+        LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        final View dialogView = inflater.inflate(R.layout.settings_code_dialog, null);
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        Resources res = view.getResources();
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        builder.setView(dialogView);
+
+        builder
+                .setTitle(R.string.telegram_access_code)
+                .setMessage(R.string.telegram_new_code)
+                .setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final EditText code = (EditText) dialogView.findViewById(R.id.settings_code);
+                        TelegramSetup.this.code = code.getText().toString();
+                        (new TelegramService(activity, code.getText().toString(), TelegramSetup.this, 2)).execute();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override
@@ -84,6 +91,6 @@ public class TelegramSetup extends SocialNetworkSetup implements TelegramCodeCli
 
     @Override
     public void onTelegramCheckSended() {
-        (new TelegramService(activity, code, TelegramSetup.this, 2)).execute();
+       this.showDialogSendCode(activity, view);
     }
 }
