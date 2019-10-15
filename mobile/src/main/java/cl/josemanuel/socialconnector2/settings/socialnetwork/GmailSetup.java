@@ -36,7 +36,7 @@ public class GmailSetup extends SocialNetworkSetup implements GmailConfigureClie
         setListener((View view, String pass) -> {
             try {
                 loading.showLoadingDialog("Verificando cuenta");
-                new GmailConfigureService(activity, this);
+                (new GmailConfigureService(activity, this)).execute();
                 /*String url = CredentialsService.configure(this.getId(), pass);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
@@ -53,10 +53,10 @@ public class GmailSetup extends SocialNetworkSetup implements GmailConfigureClie
 
 
     @Override
-    public void onLoadCheckPage(String response) {
+    public void onLoadCheckPage(String redirect) {
         loading.hideLoadingDialog();
         GmailDialog gmailDialog = new GmailDialog(activity);
-        gmailDialog.showLoginDialog("https://www.google.cl");
+        gmailDialog.showLoginDialog(redirect);
 
 
     }

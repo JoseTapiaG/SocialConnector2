@@ -64,7 +64,7 @@ public class TokenService extends AsyncTask<Void, Void, Void> {
             public byte[] getBody() {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("username", "jose.wt@gmail.com");
-                params.put("password", "socialconnector");
+                params.put("password", "social123456");
                 return new JSONObject(params).toString().getBytes();
             }
 

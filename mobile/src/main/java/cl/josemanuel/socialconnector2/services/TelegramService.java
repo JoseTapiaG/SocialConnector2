@@ -15,18 +15,20 @@ import com.google.gson.Gson;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import cl.josemanuel.socialconnector2.dialogs.Loading;
 import cl.josemanuel.socialconnector2.entities.LoginSC;
 import cl.josemanuel.socialconnector2.services.clients.TelegramCodeClient;
+import cl.josemanuel.socialconnector2.services.clients.TokenServiceClient;
 
-public class TelegramService extends AsyncTask<Void, Void, Void> {
+public class TelegramService extends AsyncTask<Void, Void, Void> implements TokenServiceClient {
 
     private Context context;
     private String code;
     private int count;
     public TelegramCodeClient telegramCodeClient;
-    private String URL = "https://socialtranslator.dcc.uchile.cl/family/configure/";
+    private String URL = "https://socialtranslator.dcc.uchile.cl/community/configure/";
 
     public TelegramService(Context context, String code, TelegramCodeClient telegramCodeClient, int count) {
         this.context = context;
@@ -37,6 +39,21 @@ public class TelegramService extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {
+        (new TokenService(context, this)).execute();
+        return null;
+    }
+
+    @Override
+    public void onTokenReceived(String token) {
+        registerTelegram(token);
+    }
+
+    @Override
+    public void onErrorToken() {
+        telegramCodeClient.onErrorSendTelegramCode();
+    }
+
+    private void registerTelegram(String token) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
 //        contactServiceClient.onLoadContacts("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImphdmllcmEudGFwaWEuZ0B1c2FjaC5jbCIsInVzZXJuYW1lIjoiamF2aWVyYS50YXBpYS5nQHVzYWNoLmNsIiwiZXhwIjoxNTIzODkwMDIyLCJ1c2VyX2lkIjoxM30.gN0uPsxpzJA56jKYkNVeZWCt9NLTSU0x5DwY54I01Ro");
@@ -74,6 +91,13 @@ public class TelegramService extends AsyncTask<Void, Void, Void> {
             }
 
             @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "JWT " + token);
+                return params;
+            }
+
+            @Override
             public String getBodyContentType() {
                 return "application/json";
             }
@@ -81,6 +105,5 @@ public class TelegramService extends AsyncTask<Void, Void, Void> {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-        return null;
     }
 }
